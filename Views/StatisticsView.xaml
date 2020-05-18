@@ -1,0 +1,99 @@
+﻿<Window  x:Class="Statistics.Views.StatisticsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Statistics"
+         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+         mc:Ignorable="d" Height="626.923" Width="1260" Background="{DynamicResource WindowBackgourndBrush}"
+             ResizeMode="NoResize" Title="Statistics" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="571" Margin="10,10,0,0" VerticalAlignment="Top" Width="341">
+            <Grid Margin="9">
+                <Grid VerticalAlignment="Top" Height="193">
+                    <Label x:Name="labelInformations" Content="General Information" FontSize="16" Width="209" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold"/>
+
+                    <Label x:Name="labelTotalGames" Content="Total games" FontSize="14" HorizontalAlignment="Left" Width="180" VerticalAlignment="Top" Margin="0,38,0,0"/>
+                    <Label x:Name="countTotalGames" Content="Count" FontSize="14" HorizontalAlignment="Right" Width="127" Margin="0,38,10,0" VerticalAlignment="Top"></Label>
+
+                    <Label x:Name="labelTotalInstalled" Content="Installed" FontSize="14" HorizontalAlignment="Left" Width="120" Margin="60,67,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="countTotalInstalled" Content="Count" FontSize="14" HorizontalAlignment="Right" Width="127" Margin="0,67,10,0" VerticalAlignment="Top"></Label>
+
+                    <Label x:Name="labelTotalNotLaunching" Content="Not launching" FontSize="14" HorizontalAlignment="Left" Width="120" Margin="60,96,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="countTotalNotLaunching" Content="Count" FontSize="14" HorizontalAlignment="Right" Width="127" Margin="0,96,10,0" VerticalAlignment="Top"></Label>
+
+                    <Label x:Name="labelTotalFavorite" Content="Favorite" FontSize="14" HorizontalAlignment="Left" Width="120" Margin="60,125,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="countTotalFavorite" Content="Count" FontSize="14" HorizontalAlignment="Right" Width="127" Margin="0,125,10,0" VerticalAlignment="Top"></Label>
+
+                    <Label x:Name="labelTotalPlaytime" Content="Playtime" FontSize="14" HorizontalAlignment="Left" Width="180" VerticalAlignment="Top" Margin="0,154,0,0"/>
+                    <Label x:Name="countTotalPlaytime" Content="Count" FontSize="14" HorizontalAlignment="Right" Width="127" Margin="0,154,10,0" VerticalAlignment="Top"></Label>
+                </Grid>
+
+                <Grid Margin="0,216,0,0" Height="335" VerticalAlignment="Top">
+                    <Label x:Name="labelGameCompletation" Content="Game Completation" FontSize="16" Width="209" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold"/>
+
+                    <Label x:Name="labelNotPlayed" Content="NotPlayed" FontSize="14" HorizontalAlignment="Left" Width="180" VerticalAlignment="Top" Margin="0,45,0,0" Height="35"/>
+                    <ProgressBar x:Name="countNotPlayed" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,45,12,0" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5" Width="120" >
+                    </ProgressBar>
+
+                    <Label x:Name="labelPlayed" Content="Played" FontSize="14" HorizontalAlignment="Left" Width="180" VerticalAlignment="Top" Margin="0,80,0,0" Height="35"/>
+                    <ProgressBar x:Name="countPlayed" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,80,12,0" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5" Width="120" >
+                    </ProgressBar>
+
+                    <Label x:Name="labelBeaten" Content="Beaten" FontSize="14" HorizontalAlignment="Left" Width="180" VerticalAlignment="Top" Margin="0,115,0,0" Height="35"/>
+                    <ProgressBar x:Name="countBeaten" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,115,12,0" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5" Width="120" >
+                    </ProgressBar>
+
+                    <Label x:Name="labelCompleted" Content="Completed" FontSize="14" HorizontalAlignment="Left" Width="180" VerticalAlignment="Top" Margin="0,150,0,0" Height="35"/>
+                    <ProgressBar x:Name="countCompleted" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,150,12,0" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5" Width="120" >
+                    </ProgressBar>
+
+                    <Label x:Name="labelPlaying" Content="Playing" FontSize="14" HorizontalAlignment="Left" Width="180" VerticalAlignment="Top" Margin="0,187,0,0" Height="35"/>
+                    <ProgressBar x:Name="countPlaying" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,187,12,0" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5" Width="120" >
+                    </ProgressBar>
+
+                    <Label x:Name="labelAbandoned" Content="Abandoned" FontSize="14" HorizontalAlignment="Left" Width="180" VerticalAlignment="Top" Margin="0,222,0,0" Height="35"/>
+                    <ProgressBar x:Name="countAbandoned" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,222,12,0" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5" Width="120" >
+                    </ProgressBar>
+
+                    <Label x:Name="labelOnHold" Content="OnHold" FontSize="14" HorizontalAlignment="Left" Width="180" VerticalAlignment="Top" Margin="0,257,0,0" Height="35"/>
+                    <ProgressBar x:Name="countOnHold" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,257,12,0" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5" Width="120" >
+                    </ProgressBar>
+
+                    <Label x:Name="labelPlanToPlay" Content="PlanToPlay" FontSize="14" HorizontalAlignment="Left" Width="180" VerticalAlignment="Top" Margin="0,292,0,0" Height="35"/>
+                    <ProgressBar x:Name="countPlanToPlay" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,292,12,0" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5" Width="120" >
+                    </ProgressBar>
+                </Grid>
+            </Grid>
+        </Border>
+
+        <Grid Margin="356,10,455,17">
+            <Label x:Name="labelStatsSourceTotal" Content="Total Games by source" FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Center" FontWeight="Bold"/>
+            <lvc:PieChart x:Name="StatsSourceTotal" LegendLocation="Bottom" Margin="0,55,0,0">
+                <lvc:PieChart.Series>
+                    <lvc:PieSeries Title="Maria" Values="3" DataLabels="True"/>
+                    <lvc:PieSeries Title="Charles" Values="4" DataLabels="True"/>
+                    <lvc:PieSeries Title="Frida" Values="6" DataLabels="True"/>
+                    <lvc:PieSeries Title="Frederic" Values="2" DataLabels="True"/>
+                </lvc:PieChart.Series>
+            </lvc:PieChart>
+        </Grid>
+
+        <Grid Margin="804,17,10,17">
+            <Label x:Name="labelStatsSourcePlaytime" Content="Total playtime by source" FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Center" FontWeight="Bold"/>
+            <lvc:CartesianChart x:Name="StatsSourcePlaytime" LegendLocation="None" Margin="0,55,0,0">
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis x:Name="StatsSourcePlaytimeX" ShowLabels="False"></lvc:Axis>
+                </lvc:CartesianChart.AxisX>
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis x:Name="StatsSourcePlaytimeY">
+                        <lvc:Axis.Separator>
+                            <lvc:Separator Step="1" />
+                        </lvc:Axis.Separator>
+                    </lvc:Axis>
+                </lvc:CartesianChart.AxisY>
+            </lvc:CartesianChart>
+        </Grid>
+
+    </Grid>
+</Window>
