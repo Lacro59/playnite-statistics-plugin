@@ -12,16 +12,15 @@ namespace Statistics.Database
         // Variable Playnite
         private static ILogger logger = LogManager.GetLogger();
 
-
         public StatisticsClass Statistics { get; set; }
-        public ConcurrentDictionary<Guid, StatisticsSource> StatisticsSourceDatabase { get; set; }
-
+        public ConcurrentDictionary<Guid, StatisticsClass> StatisticsSourceDatabase { get; set; }
 
 
         public void Initialize(IGameDatabaseAPI PlayniteApiDatabase)
         {
             Statistics = new StatisticsClass
             {
+                Name = "All",
                 GameGenres = new List<Counter>(),
                 GameSource = new List<Counter>(),
                 GameFavorite = new List<Counter>(),
@@ -33,14 +32,26 @@ namespace Statistics.Database
                 Playtime = 0,
                 Total = 0
             };
-            StatisticsSourceDatabase = new ConcurrentDictionary<Guid, StatisticsSource>();
+            StatisticsSourceDatabase = new ConcurrentDictionary<Guid, StatisticsClass>();
 
             foreach (var Game in PlayniteApiDatabase.Games)
             {
                 Add(Game);
                 Add(Game, Game.SourceId);
             }
+        }
 
+
+        public StatisticsClass Get(Guid id)
+        {
+            if (StatisticsSourceDatabase.TryGetValue(id, out var item))
+            {
+                return item;
+            }
+            else
+            {
+                return null;
+            }
         }
 
 
@@ -58,6 +69,7 @@ namespace Statistics.Database
 
             bool IsFind = false;
 
+            // Initialization variables
             if (SourceId == null)
             {
                 GameGenres = Statistics.GameGenres;
@@ -74,6 +86,8 @@ namespace Statistics.Database
             {
                 if (StatisticsSourceDatabase.TryGetValue((Guid)SourceId, out var item))
                 {
+                    GameGenres = item.GameGenres;
+                    GameSource = item.GameSource;
                     GameFavorite = item.GameFavorite;
                     GameIsInstalled = item.GameIsInstalled;
                     GameIsNotLaunching = item.GameIsNotLaunching;
@@ -84,8 +98,21 @@ namespace Statistics.Database
                 }
                 else
                 {
-                    StatisticsSource StatisticsSource = new StatisticsSource
+                    string SourceName = "";
+                    if (SourceId == Guid.Parse("00000000-0000-0000-0000-000000000000"))
                     {
+                        SourceName = "Playnite";
+                    }
+                    else
+                    {
+                        SourceName = Game.Source.Name;
+                    }
+
+                    StatisticsClass StatisticsSource = new StatisticsClass
+                    {
+                        Name = SourceName,
+                        GameGenres = new List<Counter>(),
+                        GameSource = new List<Counter>(),
                         GameFavorite = new List<Counter>(),
                         GameIsInstalled = new List<Counter>(),
                         GameIsNotLaunching = new List<Counter>(),
@@ -97,6 +124,8 @@ namespace Statistics.Database
                     };
                     StatisticsSourceDatabase.TryAdd((Guid)SourceId, StatisticsSource);
 
+                    GameGenres = new List<Counter>();
+                    GameSource = new List<Counter>();
                     GameFavorite = new List<Counter>();
                     GameIsInstalled = new List<Counter>();
                     GameIsNotLaunching = new List<Counter>();
@@ -113,32 +142,36 @@ namespace Statistics.Database
             if (Game.LastActivity == null)
                 GameIsNotLaunching.Add(new Counter { Id = Game.Id, Name = Game.Name });
 
+            if (Game.Genres != null)
+            {
+                foreach (var item in Game.Genres)
+                {
+                    IsFind = false;
+                    for (int i = 0; i < GameGenres.Count; i++)
+                    {
+                        if (item.Name == GameGenres[i].Name)
+                        {
+                            GameGenres[i].Count += 1;
+                            IsFind = true;
+                        }
+                    }
+                    if (IsFind == false)
+                        GameGenres.Add(new Counter { Id = item.Id, Name = item.Name, Count = 1 });
+                }
+            }
+
             if (SourceId == null)
             {
-                if (Game.Genres != null)
-                {
-                    foreach (var item in Game.Genres)
-                    {
-                        IsFind = false;
-                        for (int i = 0; i < GameGenres.Count; i++)
-                        {
-                            if (item.Name == GameGenres[i].Name)
-                            {
-                                GameGenres[i].Count += 1;
-                                IsFind = true;
-                            }
-                        }
-                        if (IsFind == false)
-                            GameGenres.Add(new Counter { Id = item.Id, Name = item.Name, Count = 1 });
-                    }
-                }
-
                 IsFind = false;
                 string SourceName = "";
                 if (Game.SourceId == Guid.Parse("00000000-0000-0000-0000-000000000000"))
+                {
                     SourceName = "Playnite";
+                }
                 else
+                {
                     SourceName = Game.Source.Name;
+                }
 
                 for (int i = 0; i < GameSource.Count; i++)
                 {
@@ -149,7 +182,14 @@ namespace Statistics.Database
                     }
                 }
                 if (IsFind == false)
+                {
                     GameSource.Add(new Counter { Id = Game.SourceId, Name = SourceName, Count = 1 });
+                }
+            }
+            else
+            {
+                string GameName = Game.Name;
+                GameSource.Add(new Counter { Id = Game.Id, Name = GameName, Count = Game.Playtime });
             }
 
             if (Game.Favorite)
@@ -168,7 +208,9 @@ namespace Statistics.Database
                 }
             }
             if (IsFind == false)
+            {
                 GameCompletionStatus.Add(new Counter { Name = "" + Game.CompletionStatus, Count = 1 });
+            }
 
             Playtime += Game.Playtime;
 
@@ -186,13 +228,8 @@ namespace Statistics.Database
             }
             else
             {
-                string SourceName = "";
-                if (SourceId == Guid.Parse("00000000-0000-0000-0000-000000000000"))
-                    SourceName = "Playnite";
-                else
-                    SourceName = Game.Source.Name;
-
-                StatisticsSourceDatabase[(Guid)SourceId].Name = SourceName;
+                StatisticsSourceDatabase[(Guid)SourceId].GameGenres = GameGenres;
+                StatisticsSourceDatabase[(Guid)SourceId].GameSource = GameSource;
                 StatisticsSourceDatabase[(Guid)SourceId].GameFavorite = GameFavorite;
                 StatisticsSourceDatabase[(Guid)SourceId].GameIsInstalled = GameIsInstalled;
                 StatisticsSourceDatabase[(Guid)SourceId].GameIsNotLaunching = GameIsNotLaunching;

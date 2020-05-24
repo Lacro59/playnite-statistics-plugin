@@ -1,10 +1,13 @@
 ﻿using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
+using PluginCommon;
 using Statistics.Views;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -22,6 +25,12 @@ namespace Statistics
         public Statistics(IPlayniteAPI api) : base(api)
         {
             settings = new StatisticsSettings(this);
+
+            // Get plugin's location 
+            string pluginFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
+            // Add plugin localization in application ressource.
+            Localization.SetPluginLanguage(pluginFolder, api.Paths.ConfigurationPath);
         }
 
         public override IEnumerable<ExtensionFunction> GetFunctions()

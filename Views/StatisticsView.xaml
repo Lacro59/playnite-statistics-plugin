@@ -5,95 +5,148 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Statistics"
          xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
-         mc:Ignorable="d" Height="626.923" Width="1260" Background="{DynamicResource WindowBackgourndBrush}"
+         mc:Ignorable="d" Height="735" Width="1260" Background="{DynamicResource WindowBackgourndBrush}"
              ResizeMode="NoResize" Title="Statistics" WindowStartupLocation="CenterScreen">
-    <Grid>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="571" Margin="10,10,0,0" VerticalAlignment="Top" Width="341">
-            <Grid Margin="9">
-                <Grid VerticalAlignment="Top" Height="193">
-                    <Label x:Name="labelInformations" Content="General Information" FontSize="16" Width="209" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold"/>
 
-                    <Label x:Name="labelTotalGames" Content="Total games" FontSize="14" HorizontalAlignment="Left" Width="180" VerticalAlignment="Top" Margin="0,38,0,0"/>
-                    <Label x:Name="countTotalGames" Content="Count" FontSize="14" HorizontalAlignment="Right" Width="127" Margin="0,38,10,0" VerticalAlignment="Top"></Label>
+    <DockPanel>
+        <!--Select data-->
+        <StackPanel DockPanel.Dock="Top" Height="125" Margin="10,10,5,5">
+            <Border BorderThickness="{DynamicResource PopupBorderThickness}" BorderBrush="{DynamicResource NormalBorderBrush}" Height="125">
+                <Grid Margin="10,10,10,0">
+                    <Label Content="{DynamicResource LOCStatisticsDataChoice}" VerticalAlignment="Top" Height="20" FontSize="16" FontWeight="Bold"></Label>
 
-                    <Label x:Name="labelTotalInstalled" Content="Installed" FontSize="14" HorizontalAlignment="Left" Width="120" Margin="60,67,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="countTotalInstalled" Content="Count" FontSize="14" HorizontalAlignment="Right" Width="127" Margin="0,67,10,0" VerticalAlignment="Top"></Label>
+                    <DockPanel VerticalAlignment="Bottom" Height="86" RenderTransformOrigin="0.5,0.5" Margin="15,0,0,0">
+                        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                            <ToggleButton Name="s0" Tag="null" Content="{DynamicResource LOCStatisticsDataChoiceAll}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="28" Margin="5" IsChecked="True" FontFamily="/Statistics;component/Ressources/#font" Click="ToggleButton_Click"></ToggleButton>
+                            <ToggleButton Name="s1" Content="s1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="28" Margin="5" IsChecked="False" FontFamily="/Statistics;component/Ressources/#font" Click="ToggleButton_Click"></ToggleButton>
+                            <ToggleButton Name="s2" Content="s2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="28" Margin="5" IsChecked="False" FontFamily="/Statistics;component/Ressources/#font" Click="ToggleButton_Click"></ToggleButton>
+                            <ToggleButton Name="s3" Content="s3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="28" Margin="5" IsChecked="False" FontFamily="/Statistics;component/Ressources/#font" Click="ToggleButton_Click"></ToggleButton>
+                            <ToggleButton Name="s4" Content="s4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="28" Margin="5" IsChecked="False" FontFamily="/Statistics;component/Ressources/#font" Click="ToggleButton_Click"></ToggleButton>
+                            <ToggleButton Name="s5" Content="s5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="28" Margin="5" IsChecked="False" FontFamily="/Statistics;component/Ressources/#font" Click="ToggleButton_Click"></ToggleButton>
+                            <ToggleButton Name="s6" Content="s6" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="28" Margin="5" IsChecked="False" FontFamily="/Statistics;component/Ressources/#font" Click="ToggleButton_Click"></ToggleButton>
+                        </StackPanel>
 
-                    <Label x:Name="labelTotalNotLaunching" Content="Not launching" FontSize="14" HorizontalAlignment="Left" Width="120" Margin="60,96,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="countTotalNotLaunching" Content="Count" FontSize="14" HorizontalAlignment="Right" Width="127" Margin="0,96,10,0" VerticalAlignment="Top"></Label>
-
-                    <Label x:Name="labelTotalFavorite" Content="Favorite" FontSize="14" HorizontalAlignment="Left" Width="120" Margin="60,125,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="countTotalFavorite" Content="Count" FontSize="14" HorizontalAlignment="Right" Width="127" Margin="0,125,10,0" VerticalAlignment="Top"></Label>
-
-                    <Label x:Name="labelTotalPlaytime" Content="Playtime" FontSize="14" HorizontalAlignment="Left" Width="180" VerticalAlignment="Top" Margin="0,154,0,0"/>
-                    <Label x:Name="countTotalPlaytime" Content="Count" FontSize="14" HorizontalAlignment="Right" Width="127" Margin="0,154,10,0" VerticalAlignment="Top"></Label>
+                        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
+                            <ToggleButton Name="s7" Content="s7" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="28" Margin="5" IsChecked="False" FontFamily="/Statistics;component/Ressources/#font" Click="ToggleButton_Click"></ToggleButton>
+                            <ToggleButton Name="s8" Content="s8" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="28" Margin="5" IsChecked="False" FontFamily="/Statistics;component/Ressources/#font" Click="ToggleButton_Click"></ToggleButton>
+                            <ToggleButton Name="s9" Content="s9" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="28" Margin="5" IsChecked="False" FontFamily="/Statistics;component/Ressources/#font" Click="ToggleButton_Click"></ToggleButton>
+                            <ToggleButton Name="s10" Content="s10" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="28" Margin="5" IsChecked="False" FontFamily="/Statistics;component/Ressources/#font" Click="ToggleButton_Click"></ToggleButton>
+                            <ToggleButton Name="s11" Content="s11" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="28" Margin="5" IsChecked="False" FontFamily="/Statistics;component/Ressources/#font" Click="ToggleButton_Click"></ToggleButton>
+                            <ToggleButton Name="s12" Content="s12" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="28" Margin="5" IsChecked="False" FontFamily="/Statistics;component/Ressources/#font" Click="ToggleButton_Click"></ToggleButton>
+                            <ToggleButton Name="s13" Content="s13" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="28" Margin="5" IsChecked="False" FontFamily="/Statistics;component/Ressources/#font" Click="ToggleButton_Click"></ToggleButton>
+                        </StackPanel>
+                    </DockPanel>
                 </Grid>
+            </Border>
+        </StackPanel>
 
-                <Grid Margin="0,216,0,0" Height="335" VerticalAlignment="Top">
-                    <Label x:Name="labelGameCompletation" Content="Game Completation" FontSize="16" Width="209" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold"/>
+        <!--Data-->
+        <DockPanel DockPanel.Dock="Bottom" Margin="10,5,5,10">
+            <StackPanel DockPanel.Dock="Left" Width="340" Margin="0">
+                <Border BorderThickness="{DynamicResource PopupBorderThickness}" BorderBrush="{DynamicResource NormalBorderBrush}">
+                    <DockPanel Margin="10">
+                        <!--Information-->
+                        <StackPanel DockPanel.Dock="Top" Height="180">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                                <Label Content="{DynamicResource LOCStatisticsDataTitle}" FontSize="16" VerticalAlignment="Top" FontWeight="Bold" HorizontalAlignment="Left"/>
+                            </StackPanel>
 
-                    <Label x:Name="labelNotPlayed" Content="NotPlayed" FontSize="14" HorizontalAlignment="Left" Width="180" VerticalAlignment="Top" Margin="0,45,0,0" Height="35"/>
-                    <ProgressBar x:Name="countNotPlayed" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,45,12,0" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5" Width="120" >
-                    </ProgressBar>
+                            <Grid VerticalAlignment="Bottom" Margin="30,0,0,0">
+                                <Label Content="{DynamicResource LOCStatisticsDataTotalAll}" FontSize="14" HorizontalAlignment="Left" Width="180" VerticalAlignment="Top" Margin="0"/>
+                                <Label x:Name="countTotalGames" Content="Count" FontSize="14" HorizontalAlignment="Right" Width="100" VerticalAlignment="Top"></Label>
 
-                    <Label x:Name="labelPlayed" Content="Played" FontSize="14" HorizontalAlignment="Left" Width="180" VerticalAlignment="Top" Margin="0,80,0,0" Height="35"/>
-                    <ProgressBar x:Name="countPlayed" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,80,12,0" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5" Width="120" >
-                    </ProgressBar>
+                                <Label Content="{DynamicResource LOCStatisticsDataTotalInstalled}" FontSize="14" HorizontalAlignment="Left" Width="120" Margin="60,25,0,0" VerticalAlignment="Top"/>
+                                <Label x:Name="countTotalInstalled" Content="Count" FontSize="14" HorizontalAlignment="Right" Width="100" Margin="0,25,0,0" VerticalAlignment="Top"></Label>
 
-                    <Label x:Name="labelBeaten" Content="Beaten" FontSize="14" HorizontalAlignment="Left" Width="180" VerticalAlignment="Top" Margin="0,115,0,0" Height="35"/>
-                    <ProgressBar x:Name="countBeaten" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,115,12,0" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5" Width="120" >
-                    </ProgressBar>
+                                <Label Content="{DynamicResource LOCStatisticsDataTotalNotLaunching}" FontSize="14" HorizontalAlignment="Left" Width="120" Margin="60,50,0,0" VerticalAlignment="Top"/>
+                                <Label x:Name="countTotalNotLaunching" Content="Count" FontSize="14" HorizontalAlignment="Right" Width="100" Margin="0,50,0,0" VerticalAlignment="Top"></Label>
 
-                    <Label x:Name="labelCompleted" Content="Completed" FontSize="14" HorizontalAlignment="Left" Width="180" VerticalAlignment="Top" Margin="0,150,0,0" Height="35"/>
-                    <ProgressBar x:Name="countCompleted" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,150,12,0" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5" Width="120" >
-                    </ProgressBar>
+                                <Label Content="{DynamicResource LOCStatisticsDataTotalFavorite}" FontSize="14" HorizontalAlignment="Left" Width="120" Margin="60,75,0,0" VerticalAlignment="Top"/>
+                                <Label x:Name="countTotalFavorite" Content="Count" FontSize="14" HorizontalAlignment="Right" Width="100" Margin="0,75,0,0" VerticalAlignment="Top"></Label>
 
-                    <Label x:Name="labelPlaying" Content="Playing" FontSize="14" HorizontalAlignment="Left" Width="180" VerticalAlignment="Top" Margin="0,187,0,0" Height="35"/>
-                    <ProgressBar x:Name="countPlaying" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,187,12,0" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5" Width="120" >
-                    </ProgressBar>
+                                <Label Content="{DynamicResource LOCStatisticsDataTotalPlaytime}" FontSize="14" HorizontalAlignment="Left" Width="180" VerticalAlignment="Top" Margin="0,100,0,0"/>
+                                <Label x:Name="countTotalPlaytime" Content="Count" FontSize="14" HorizontalAlignment="Right" Width="100" Margin="0,100,0,0" VerticalAlignment="Top"></Label>
+                            </Grid>
+                        </StackPanel>
 
-                    <Label x:Name="labelAbandoned" Content="Abandoned" FontSize="14" HorizontalAlignment="Left" Width="180" VerticalAlignment="Top" Margin="0,222,0,0" Height="35"/>
-                    <ProgressBar x:Name="countAbandoned" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,222,12,0" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5" Width="120" >
-                    </ProgressBar>
+                        <!--Completation status-->
+                        <StackPanel DockPanel.Dock="Bottom" Height="335">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                                <Label Content="{DynamicResource LOCCompletionStatus}" FontSize="16" VerticalAlignment="Top" FontWeight="Bold"/>
+                            </StackPanel>
 
-                    <Label x:Name="labelOnHold" Content="OnHold" FontSize="14" HorizontalAlignment="Left" Width="180" VerticalAlignment="Top" Margin="0,257,0,0" Height="35"/>
-                    <ProgressBar x:Name="countOnHold" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,257,12,0" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5" Width="120" >
-                    </ProgressBar>
+                            <Grid VerticalAlignment="Bottom" Margin="30,0,0,0">
+                                <Label Content="{DynamicResource LOCCompletionStatusNotPlayed}" FontSize="14" HorizontalAlignment="Left" Width="140" VerticalAlignment="Top" Height="28"/>
+                                <ProgressBar x:Name="countNotPlayed" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="140" />
 
-                    <Label x:Name="labelPlanToPlay" Content="PlanToPlay" FontSize="14" HorizontalAlignment="Left" Width="180" VerticalAlignment="Top" Margin="0,292,0,0" Height="35"/>
-                    <ProgressBar x:Name="countPlanToPlay" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,292,12,0" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5" Width="120" >
-                    </ProgressBar>
-                </Grid>
-            </Grid>
-        </Border>
+                                <Label Content="{DynamicResource LOCCompletionStatusPlayed}" FontSize="14" HorizontalAlignment="Left" Width="140" VerticalAlignment="Top" Margin="0,35,0,0" Height="28"/>
+                                <ProgressBar x:Name="countPlayed" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,35,0,0" HorizontalAlignment="Right" Width="140" />
 
-        <Grid Margin="356,10,455,17">
-            <Label x:Name="labelStatsSourceTotal" Content="Total Games by source" FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Center" FontWeight="Bold"/>
-            <lvc:PieChart x:Name="StatsSourceTotal" LegendLocation="Bottom" Margin="0,55,0,0">
-                <lvc:PieChart.Series>
-                    <lvc:PieSeries Title="Maria" Values="3" DataLabels="True"/>
-                    <lvc:PieSeries Title="Charles" Values="4" DataLabels="True"/>
-                    <lvc:PieSeries Title="Frida" Values="6" DataLabels="True"/>
-                    <lvc:PieSeries Title="Frederic" Values="2" DataLabels="True"/>
-                </lvc:PieChart.Series>
-            </lvc:PieChart>
-        </Grid>
+                                <Label Content="{DynamicResource LOCCompletionStatusBeaten}" FontSize="14" HorizontalAlignment="Left" Width="140" VerticalAlignment="Top" Margin="0,70,0,0" Height="28"/>
+                                <ProgressBar x:Name="countBeaten" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,70,0,0" HorizontalAlignment="Right" Width="140" />
 
-        <Grid Margin="804,17,10,17">
-            <Label x:Name="labelStatsSourcePlaytime" Content="Total playtime by source" FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Center" FontWeight="Bold"/>
-            <lvc:CartesianChart x:Name="StatsSourcePlaytime" LegendLocation="None" Margin="0,55,0,0">
-                <lvc:CartesianChart.AxisX>
-                    <lvc:Axis x:Name="StatsSourcePlaytimeX" ShowLabels="False"></lvc:Axis>
-                </lvc:CartesianChart.AxisX>
-                <lvc:CartesianChart.AxisY>
-                    <lvc:Axis x:Name="StatsSourcePlaytimeY">
-                        <lvc:Axis.Separator>
-                            <lvc:Separator Step="1" />
-                        </lvc:Axis.Separator>
-                    </lvc:Axis>
-                </lvc:CartesianChart.AxisY>
-            </lvc:CartesianChart>
-        </Grid>
+                                <Label Content="{DynamicResource LOCCompletionStatusCompleted}" FontSize="14" HorizontalAlignment="Left" Width="140" VerticalAlignment="Top" Margin="0,105,0,0" Height="28"/>
+                                <ProgressBar x:Name="countCompleted" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,105,0,0" HorizontalAlignment="Right" Width="140" />
 
-    </Grid>
+                                <Label Content="{DynamicResource LOCCompletionStatusPlaying}" FontSize="14" HorizontalAlignment="Left" Width="140" VerticalAlignment="Top" Margin="0,145,0,0" Height="28"/>
+                                <ProgressBar x:Name="countPlaying" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,145,0,0" HorizontalAlignment="Right" Width="140" />
+
+                                <Label Content="{DynamicResource LOCCompletionStatusAbandoned}" FontSize="14" HorizontalAlignment="Left" Width="140" VerticalAlignment="Top" Margin="0,185,0,0" Height="28"/>
+                                <ProgressBar x:Name="countAbandoned" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,185,0,0" HorizontalAlignment="Right" Width="140" />
+
+                                <Label Content="{DynamicResource LOCCompletionStatusOnHold}" FontSize="14" HorizontalAlignment="Left" Width="140" VerticalAlignment="Top" Margin="0,220,0,0" Height="28"/>
+                                <ProgressBar x:Name="countOnHold" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,220,0,0" HorizontalAlignment="Right" Width="140" />
+
+                                <Label Content="{DynamicResource LOCCompletionStatusPlanToPlay}" FontSize="14" HorizontalAlignment="Left" Width="140" VerticalAlignment="Top" Margin="0,255,0,0" Height="28"/>
+                                <ProgressBar x:Name="countPlanToPlay" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,255,0,0" HorizontalAlignment="Right" Width="140" />
+                            </Grid>
+                        </StackPanel>
+                    </DockPanel>
+                </Border>
+            </StackPanel>
+
+            <!--Graphics-->
+            <DockPanel DockPanel.Dock="Right">
+                <!--Playtime-->
+                <DockPanel DockPanel.Dock="Left" Width="448">
+                    <StackPanel DockPanel.Dock="Top" Margin="10">
+                        <Label Content="{DynamicResource LOCStatisticsGraphicsTitlePlayTime}" FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Center" FontWeight="Bold"/>
+                    </StackPanel>
+
+                    <StackPanel DockPanel.Dock="Bottom" Margin="10,0,10,10">
+                        <lvc:CartesianChart x:Name="StatsGraphicPlaytime" LegendLocation="None" Height="500">
+                            <lvc:CartesianChart.AxisX>
+                                <lvc:Axis x:Name="StatsGraphicPlaytimeX" ShowLabels="False"></lvc:Axis>
+                            </lvc:CartesianChart.AxisX>
+                            <lvc:CartesianChart.AxisY>
+                                <lvc:Axis x:Name="StatsGraphicPlaytimeY">
+                                    <lvc:Axis.Separator>
+                                        <lvc:Separator Step="1" />
+                                    </lvc:Axis.Separator>
+                                </lvc:Axis>
+                            </lvc:CartesianChart.AxisY>
+                        </lvc:CartesianChart>
+                    </StackPanel>
+                </DockPanel>
+
+                <!--Genres-->
+                <DockPanel DockPanel.Dock="Right" Width="448">
+                    <StackPanel DockPanel.Dock="Top" Margin="10">
+                        <Label Content="{DynamicResource LOCStatisticsGraphicsTitleGenre}" FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Center" FontWeight="Bold"/>
+                    </StackPanel>
+
+                    <StackPanel DockPanel.Dock="Bottom" Margin="10,0,10,10">
+                        <lvc:PieChart x:Name="StatsGraphicGenres" LegendLocation="none" Height="500">
+                            <lvc:PieChart.Series>
+                                <lvc:PieSeries Title="Maria" Values="3" DataLabels="True"/>
+                                <lvc:PieSeries Title="Charles" Values="4" DataLabels="True"/>
+                                <lvc:PieSeries Title="Frida" Values="6" DataLabels="True"/>
+                                <lvc:PieSeries Title="Frederic" Values="2" DataLabels="True"/>
+                            </lvc:PieChart.Series>
+                        </lvc:PieChart>
+                    </StackPanel>
+                </DockPanel>
+            </DockPanel>
+        </DockPanel>
+    </DockPanel>
 </Window>

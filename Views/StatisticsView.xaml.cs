@@ -4,23 +4,14 @@ using LiveCharts.Wpf;
 using Newtonsoft.Json;
 using Playnite.SDK;
 using Playnite.SDK.Models;
+using PluginCommon;
 using Statistics.Database;
 using Statistics.Models;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Controls.Primitives;
 
 namespace Statistics.Views
 {
@@ -30,146 +21,349 @@ namespace Statistics.Views
     public partial class StatisticsView : Window
     {
         private static readonly ILogger logger = LogManager.GetLogger();
+        private static StatisticsDatabase StatisticsDatabase = new StatisticsDatabase();
 
+        private ToggleButton _lastToggleButton = null;
+        private bool desactiveToogleCheck = false;
 
         public StatisticsView(StatisticsSettings settings, IGameDatabaseAPI PlayniteApiDatabase, string PluginUserDataPath)
         {
-            StatisticsDatabase StatisticsDatabase = new StatisticsDatabase();
             StatisticsDatabase.Initialize(PlayniteApiDatabase);
-
 
             InitializeComponent();
 
+            SetListSource(PlayniteApiDatabase);
+            _lastToggleButton = s0;
+            s0.IsChecked = true;
+            SetData("null");
+        }
 
-            labelInformations.Content = "Global informations";
-            labelTotalGames.Content = "Total games";
-            countTotalGames.Content = StatisticsDatabase.Statistics.Total;
-            labelTotalInstalled.Content = "Is installed";
-            countTotalInstalled.Content = StatisticsDatabase.Statistics.GameIsInstalled.Count;
-            labelTotalNotLaunching.Content = "Not Launching";
-            countTotalNotLaunching.Content = StatisticsDatabase.Statistics.GameIsNotLaunching.Count;
-            labelTotalFavorite.Content = "Favorite";
-            countTotalFavorite.Content = StatisticsDatabase.Statistics.GameFavorite.Count;
-            labelTotalPlaytime.Content = "Playtime";
-            countTotalPlaytime.Content = (int)TimeSpan.FromSeconds(StatisticsDatabase.Statistics.Playtime).TotalHours + "h " 
-                + TimeSpan.FromSeconds(StatisticsDatabase.Statistics.Playtime).ToString(@"mm") + "min";
+        /// <summary>
+        /// Set list sources available in database.
+        /// </summary>
+        /// <param name="PlayniteApiDatabase"></param>
+        internal void SetListSource(IGameDatabaseAPI PlayniteApiDatabase)
+        {
+            s1.Visibility = Visibility.Hidden;
+            s2.Visibility = Visibility.Hidden;
+            s3.Visibility = Visibility.Hidden;
+            s4.Visibility = Visibility.Hidden;
+            s5.Visibility = Visibility.Hidden;
+            s6.Visibility = Visibility.Hidden;
+            s7.Visibility = Visibility.Hidden;
+            s8.Visibility = Visibility.Hidden;
+            s9.Visibility = Visibility.Hidden;
+            s10.Visibility = Visibility.Hidden;
+            s11.Visibility = Visibility.Hidden;
+            s12.Visibility = Visibility.Hidden;
+            s13.Visibility = Visibility.Hidden;
 
-            /*
-            NotPlayed = 0,
-            Played = 1,
-            Beaten = 2,
-            Completed = 3,
-            Playing = 4,
-            Abandoned = 5,
-            OnHold = 6,
-            PlanToPlay = 7
-            */
-
-            List<Counter> GameCompletionStatus = StatisticsDatabase.Statistics.GameCompletionStatus;
-            int NotPlayed = 0;
-            int Played = 0;
-            int Beaten = 0;
-            int Completed = 0;
-            int Playing = 0;
-            int Abandoned = 0;
-            int OnHold = 0;
-            int PlanToPlay = 0;
-
-            for (int i = 0; i < GameCompletionStatus.Count; i++)
+            int iCount = 1;
+            foreach (var item in PlayniteApiDatabase.Sources)
             {
-                if (GameCompletionStatus[i].Name == "" + CompletionStatus.NotPlayed)
-                    NotPlayed = GameCompletionStatus[i].Count;
+                string SourceName = TransformIcon.Get(item.Name);
 
-                if (GameCompletionStatus[i].Name == "" + CompletionStatus.Played)
-                    Played = GameCompletionStatus[i].Count;
+                if (SourceName.Length != 1)
+                {
+                    SourceName = item.Name;
+                }
+                else
+                {
+                    SourceName = SourceName + " " + item.Name;
+                }
 
-                if (GameCompletionStatus[i].Name == "" + CompletionStatus.Beaten)
-                    Beaten = GameCompletionStatus[i].Count;
+                switch (iCount)
+                {
+                    case 1:
+                        s1.Tag = item.Id.ToString();
+                        s1.Content = item.Name;
+                        s1.Visibility = Visibility.Visible;
+                        break;
+                    case 2:
+                        s2.Tag = item.Id.ToString();
+                        s2.Content = item.Name;
+                        s2.Visibility = Visibility.Visible;
+                        break;
+                    case 3:
+                        s3.Tag = item.Id.ToString();
+                        s3.Content = item.Name;
+                        s3.Visibility = Visibility.Visible;
+                        break;
+                    case 4:
+                        s4.Tag = item.Id.ToString();
+                        s4.Content = item.Name;
+                        s4.Visibility = Visibility.Visible;
+                        break;
+                    case 5:
+                        s5.Tag = item.Id.ToString();
+                        s5.Content = item.Name;
+                        s5.Visibility = Visibility.Visible;
+                        break;
+                    case 6:
+                        s6.Tag = item.Id.ToString();
+                        s6.Content = item.Name;
+                        s6.Visibility = Visibility.Visible;
+                        break;
+                    case 7:
+                        s7.Tag = item.Id.ToString();
+                        s7.Content = item.Name;
+                        s7.Visibility = Visibility.Visible;
+                        break;
+                    case 8:
+                        s8.Tag = item.Id.ToString();
+                        s8.Content = item.Name;
+                        s8.Visibility = Visibility.Visible;
+                        break;
+                    case 9:
+                        s9.Tag = item.Id.ToString();
+                        s9.Content = item.Name;
+                        s9.Visibility = Visibility.Visible;
+                        break;
+                    case 10:
+                        s10.Tag = item.Id.ToString();
+                        s10.Content = item.Name;
+                        s10.Visibility = Visibility.Visible;
+                        break;
+                    case 11:
+                        s11.Tag = item.Id.ToString();
+                        s11.Content = item.Name;
+                        s11.Visibility = Visibility.Visible;
+                        break;
+                    case 12:
+                        s12.Tag = item.Id.ToString();
+                        s12.Content = item.Name;
+                        s12.Visibility = Visibility.Visible;
+                        break;
+                    case 13:
+                        s13.Tag = item.Id.ToString();
+                        s13.Content = item.Name;
+                        s13.Visibility = Visibility.Visible;
+                        break;
+                }
 
-                if (GameCompletionStatus[i].Name == "" + CompletionStatus.Completed)
-                    Completed = GameCompletionStatus[i].Count;
-
-                if (GameCompletionStatus[i].Name == "" + CompletionStatus.Playing)
-                    Playing = GameCompletionStatus[i].Count;
-
-                if (GameCompletionStatus[i].Name == "" + CompletionStatus.Abandoned)
-                    Abandoned = GameCompletionStatus[i].Count;
-
-                if (GameCompletionStatus[i].Name == "" + CompletionStatus.OnHold)
-                    OnHold = GameCompletionStatus[i].Count;
-
-                if (GameCompletionStatus[i].Name == "" + CompletionStatus.PlanToPlay)
-                    PlanToPlay = GameCompletionStatus[i].Count;
+                iCount += 1;
             }
 
-            labelGameCompletation.Content = "Game completation";
-            labelNotPlayed.Content = "Not played";
-            countNotPlayed.Value = NotPlayed;
-            countNotPlayed.Maximum = StatisticsDatabase.Statistics.Total;
-            labelPlayed.Content = "Played";
-            countPlayed.Value = Played;
-            countPlayed.Maximum = StatisticsDatabase.Statistics.Total;
-            labelBeaten.Content = "Beaten";
-            countBeaten.Value = Beaten;
-            countBeaten.Maximum = StatisticsDatabase.Statistics.Total;
-            labelCompleted.Content = "Completed";
-            countCompleted.Value = Completed;
-            countCompleted.Maximum = StatisticsDatabase.Statistics.Total;
-            labelPlaying.Content = "Playing";
-            countPlaying.Value = Playing;
-            countPlaying.Maximum = StatisticsDatabase.Statistics.Total;
-            labelAbandoned.Content = "Abandoned";
-            countAbandoned.Value = Abandoned;
-            countAbandoned.Maximum = StatisticsDatabase.Statistics.Total;
-            labelOnHold.Content = "On hold";
-            countOnHold.Value = OnHold;
-            countOnHold.Maximum = StatisticsDatabase.Statistics.Total;
-            labelPlanToPlay.Content = "Plan to play";
-            countPlanToPlay.Value = PlanToPlay;
-            countPlanToPlay.Maximum = StatisticsDatabase.Statistics.Total;
+            s0.IsChecked = true;
+        }
 
 
-            
-            ConcurrentDictionary<Guid, StatisticsSource> StatisticsSourceDatabase = StatisticsDatabase.StatisticsSourceDatabase;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ToggleButton_Click(object sender, RoutedEventArgs e)
+        {
+            var toggleButton = sender as ToggleButton;
 
-            SeriesCollection SourceTotal = new SeriesCollection();
-
-            SeriesCollection SourcePlaytime = new SeriesCollection();
-            ChartValues<double> SourcePlaytimeSeries = new ChartValues<double>();
-            string[] SourcePlaytimeLabels = new string[StatisticsSourceDatabase.Count];
-            int counter = 0;
-            foreach (var item in StatisticsSourceDatabase)
+            try
             {
-                SourceTotal.Add(new PieSeries
+                if (_lastToggleButton == toggleButton && toggleButton.IsChecked == false)
                 {
-                    Title = item.Value.Name,
-                    Values = new ChartValues<ObservableValue> { new ObservableValue(item.Value.Total) },
-                    DataLabels = true
+                    toggleButton.IsChecked = true;
+                }
+                else
+                {
+                    if (!desactiveToogleCheck)
+                    {
+                        desactiveToogleCheck = true;
+
+                        if (_lastToggleButton != null)
+                        {
+                            _lastToggleButton.IsChecked = false;
+                        }
+
+                        _lastToggleButton = toggleButton;
+
+                        SetData((string)toggleButton.Tag);
+                    }
+                }
+            }
+            catch (Exception Ex)
+            {
+                //logger.Error(Ex, "ToggleButton_Checked");
+                desactiveToogleCheck = false;
+            }
+
+            desactiveToogleCheck = false;
+        }
+
+        internal void SetData(string SourceID)
+        {
+            StatisticsClass stats;
+            if (SourceID == "null")
+            {
+                stats = StatisticsDatabase.Statistics;
+            }
+            else
+            {
+                stats = StatisticsDatabase.Get(Guid.Parse(SourceID));
+            }
+
+            logger.Info(JsonConvert.SerializeObject(stats));
+
+
+
+            long Total = 0;
+            long TotalInstalled = 0;
+            long TotalNotLaunching = 0;
+            long TotalFavorite = 0;
+            string TotalPlaytime = "0h 00min";
+
+            long NotPlayed = 0;
+            long Played = 0;
+            long Beaten = 0;
+            long Completed = 0;
+            long Playing = 0;
+            long Abandoned = 0;
+            long OnHold = 0;
+            long PlanToPlay = 0;
+
+            SeriesCollection StatsGraphicsPlaytimeSeries = new SeriesCollection();
+            string[] StatsGraphicsPlaytimeLabels = new string[0];
+            ChartValues<double> SourcePlaytimeSeries = new ChartValues<double>();
+
+            SeriesCollection SourceGraphicsGenresSeries = new SeriesCollection();
+
+            if (stats != null)
+            {
+                // Information
+                Total = stats.Total;
+                TotalInstalled = stats.GameIsInstalled.Count;
+                TotalNotLaunching = stats.GameIsNotLaunching.Count;
+                TotalFavorite = stats.GameFavorite.Count;
+                TotalPlaytime = (int)TimeSpan.FromSeconds(stats.Playtime).TotalHours + "h "
+                    + TimeSpan.FromSeconds(stats.Playtime).ToString(@"mm") + "min";
+
+                // Game completation
+                List<Counter> GameCompletionStatus = stats.GameCompletionStatus;
+
+                for (int i = 0; i < GameCompletionStatus.Count; i++)
+                {
+                    if (GameCompletionStatus[i].Name == "" + CompletionStatus.NotPlayed)
+                        NotPlayed = GameCompletionStatus[i].Count;
+
+                    if (GameCompletionStatus[i].Name == "" + CompletionStatus.Played)
+                        Played = GameCompletionStatus[i].Count;
+
+                    if (GameCompletionStatus[i].Name == "" + CompletionStatus.Beaten)
+                        Beaten = GameCompletionStatus[i].Count;
+
+                    if (GameCompletionStatus[i].Name == "" + CompletionStatus.Completed)
+                        Completed = GameCompletionStatus[i].Count;
+
+                    if (GameCompletionStatus[i].Name == "" + CompletionStatus.Playing)
+                        Playing = GameCompletionStatus[i].Count;
+
+                    if (GameCompletionStatus[i].Name == "" + CompletionStatus.Abandoned)
+                        Abandoned = GameCompletionStatus[i].Count;
+
+                    if (GameCompletionStatus[i].Name == "" + CompletionStatus.OnHold)
+                        OnHold = GameCompletionStatus[i].Count;
+
+                    if (GameCompletionStatus[i].Name == "" + CompletionStatus.PlanToPlay)
+                        PlanToPlay = GameCompletionStatus[i].Count;
+                }
+
+                // Graphics playtime
+                int counter = 0;
+                if (SourceID == "null")
+                {
+                    ConcurrentDictionary<Guid, StatisticsClass> StatisticsSourceDatabase = StatisticsDatabase.StatisticsSourceDatabase;
+                    StatsGraphicsPlaytimeLabels = new string[StatisticsSourceDatabase.Count];
+
+                    foreach (var item in StatisticsSourceDatabase)
+                    {
+                        SourcePlaytimeSeries.Add(item.Value.Playtime);
+                        StatsGraphicsPlaytimeLabels[counter] = item.Value.Name;
+                        counter += 1;
+                    }
+                }
+                else
+                {
+                    List<Counter> StatisticsSourceDatabase = StatisticsDatabase.Get(Guid.Parse(SourceID)).GameSource;
+
+                    List<dataTemp> temp = new List<dataTemp>();
+
+                    foreach (var item in StatisticsSourceDatabase)
+                    {
+                        temp.Add(new dataTemp() { Name = item.Name, Count = item.Count });
+                    }
+
+                    temp.Sort((a, b) => b.Count.CompareTo(a.Count));
+                    //temp.Reverse();
+
+                    StatsGraphicsPlaytimeLabels = new string[10];
+                    foreach (var item in temp)
+                    {
+                        if (counter < 10)
+                        {
+                            SourcePlaytimeSeries.Add(item.Count);
+                            StatsGraphicsPlaytimeLabels[counter] = item.Name;
+                            counter += 1;
+                        }
+                    }
+                }
+
+                StatsGraphicsPlaytimeSeries.Add(new RowSeries
+                {
+                    Title = "Playtime",
+                    Values = SourcePlaytimeSeries
                 });
 
+                //Graphics genres
+                foreach (var item in stats.GameGenres)
+                {
+                    SourceGraphicsGenresSeries.Add(new PieSeries
+                    {
+                        Title = item.Name,
+                        Values = new ChartValues<ObservableValue> { new ObservableValue(item.Count) },
+                        DataLabels = true
+                    });
+                }
+            }
+            else
+            {
 
-                SourcePlaytimeSeries.Add(item.Value.Playtime);
-                SourcePlaytimeLabels[counter] = item.Value.Name;
-                counter += 1;
             }
 
-            SourcePlaytime.Add(new RowSeries
-            {
-                Title = "Playtime",
-                Values = SourcePlaytimeSeries
-            });
 
+            countTotalGames.Content = Total;
+            countTotalInstalled.Content = TotalInstalled;
+            countTotalNotLaunching.Content = TotalNotLaunching;
+            countTotalFavorite.Content = TotalFavorite;
+            countTotalPlaytime.Content = TotalPlaytime;
 
-            labelStatsSourceTotal.Content = "Total Games by source";
-            StatsSourceTotal.Series = SourceTotal;
+            countNotPlayed.Value = NotPlayed;
+            countNotPlayed.Maximum = stats.Total;
+            countPlayed.Value = Played;
+            countPlayed.Maximum = stats.Total;
+            countBeaten.Value = Beaten;
+            countBeaten.Maximum = stats.Total;
+            countCompleted.Value = Completed;
+            countCompleted.Maximum = stats.Total;
+            countPlaying.Value = Playing;
+            countPlaying.Maximum = stats.Total;
+            countAbandoned.Value = Abandoned;
+            countAbandoned.Maximum = stats.Total;
+            countOnHold.Value = OnHold;
+            countOnHold.Maximum = stats.Total;
+            countPlanToPlay.Value = PlanToPlay;
+            countPlanToPlay.Maximum = stats.Total;
 
-            labelStatsSourcePlaytime.Content = "Total playtime by source";
-            StatsSourcePlaytime.Series = SourcePlaytime;
-            StatsSourcePlaytimeX.LabelFormatter = value => (int)TimeSpan.FromSeconds(value).TotalHours + "h " + TimeSpan.FromSeconds(value).ToString(@"mm") + "min";
-            StatsSourcePlaytimeY.Labels = SourcePlaytimeLabels;
+            StatsGraphicPlaytime.Series = StatsGraphicsPlaytimeSeries;
+            StatsGraphicPlaytimeX.LabelFormatter = value => (int)TimeSpan.FromSeconds(value).TotalHours + "h " + TimeSpan.FromSeconds(value).ToString(@"mm") + "min";
+            StatsGraphicPlaytimeY.Labels = StatsGraphicsPlaytimeLabels;
 
-
-
+            StatsGraphicGenres.Series = SourceGraphicsGenresSeries;
         }
     }
 }
+
+public class dataTemp
+{
+    public string Name { get; set; }
+    public long Count { get; set; }
+}
+
