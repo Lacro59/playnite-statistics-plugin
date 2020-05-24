@@ -201,10 +201,6 @@ namespace Statistics.Views
                 stats = StatisticsDatabase.Get(Guid.Parse(SourceID));
             }
 
-            logger.Info(JsonConvert.SerializeObject(stats));
-
-
-
             long Total = 0;
             long TotalInstalled = 0;
             long TotalNotLaunching = 0;
