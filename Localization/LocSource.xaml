@@ -15,7 +15,7 @@
     <sys:String x:Key="LOCStatisticsDataTitle">Information</sys:String>
     <sys:String x:Key="LOCStatisticsDataTotalAll">Total games</sys:String>
     <sys:String x:Key="LOCStatisticsDataTotalInstalled">Installed</sys:String>
-    <sys:String x:Key="LOCStatisticsDataTotalNotLaunching">Not lauching</sys:String>
+    <sys:String x:Key="LOCStatisticsDataTotalNotLaunching">Not launched</sys:String>
     <sys:String x:Key="LOCStatisticsDataTotalFavorite">Favorites</sys:String>
     <sys:String x:Key="LOCStatisticsDataTotalPlaytime">Total play time</sys:String>
 
