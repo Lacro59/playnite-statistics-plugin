@@ -37,7 +37,7 @@
                 <ResourceDictionary Source="Ressources/PlayniteRessources/DefaultControls/ToolTip.xaml" />
                 <ResourceDictionary Source="Ressources/PlayniteRessources/DefaultControls/TreeView.xaml" />
                 <!--Default localization-->
-                <ResourceDictionary Source="Ressources/LocSource.xaml" />
+                <ResourceDictionary Source="Localization/LocSource.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

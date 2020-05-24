@@ -19,6 +19,16 @@
     <sys:String x:Key="LOCStatisticsDataTotalFavorite">Favorites</sys:String>
     <sys:String x:Key="LOCStatisticsDataTotalPlaytime">Total play time</sys:String>
 
+    <sys:String x:Key="LOCStatisticCompletionStatusNotPlayed">Not Played</sys:String>
+    <sys:String x:Key="LOCStatisticCompletionStatusPlayed">Played</sys:String>
+    <sys:String x:Key="LOCStatisticCompletionStatusBeaten">Beaten</sys:String>
+    <sys:String x:Key="LOCStatisticCompletionStatusCompleted">Completed</sys:String>
+    <sys:String x:Key="LOCStatisticCompletionStatusPlaying">Playing</sys:String>
+    <sys:String x:Key="LOCStatisticCompletionStatusAbandoned">Abandoned</sys:String>
+    <sys:String x:Key="LOCStatisticCompletionStatusOnHold">On Hold</sys:String>
+    <sys:String x:Key="LOCStatisticCompletionStatusPlanToPlay">Plan to Play</sys:String>
+    <sys:String x:Key="LOCStatisticCompletionStatus">Completion Status</sys:String>
+
     <sys:String x:Key="LOCStatisticsGraphicsTitlePlayTime">Total play time</sys:String>
-    <sys:String x:Key="LOCStatisticsGraphicsTitleGenre">Total genres</sys:String>
+    <sys:String x:Key="LOCStatisticsGraphicsTitleGenre">Total by genres</sys:String>
 </ResourceDictionary>

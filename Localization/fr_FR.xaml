@@ -1,0 +1,34 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <!--
+    THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
+    -->
+
+    <!-- 
+    StatisticsyView 
+    -->
+
+    <sys:String x:Key="LOCStatisticsDataChoice">Sélection des données</sys:String>
+    <sys:String x:Key="LOCStatisticsDataChoiceAll">Toutes les sources</sys:String>
+
+    <sys:String x:Key="LOCStatisticsDataTitle">Informations</sys:String>
+    <sys:String x:Key="LOCStatisticsDataTotalAll">Jeux total</sys:String>
+    <sys:String x:Key="LOCStatisticsDataTotalInstalled">Installés</sys:String>
+    <sys:String x:Key="LOCStatisticsDataTotalNotLaunching">Non lancés</sys:String>
+    <sys:String x:Key="LOCStatisticsDataTotalFavorite">Favoris</sys:String>
+    <sys:String x:Key="LOCStatisticsDataTotalPlaytime">Temps de jeu total</sys:String>
+
+    <sys:String x:Key="LOCStatisticCompletionStatusNotPlayed">Pas encore lancé</sys:String>
+    <sys:String x:Key="LOCStatisticCompletionStatusPlayed">Commencé</sys:String>
+    <sys:String x:Key="LOCStatisticCompletionStatusBeaten">Terminé</sys:String>
+    <sys:String x:Key="LOCStatisticCompletionStatusCompleted">Terminé (100%)</sys:String>
+    <sys:String x:Key="LOCStatisticCompletionStatusPlaying">En cours</sys:String>
+    <sys:String x:Key="LOCStatisticCompletionStatusAbandoned">Abandonné</sys:String>
+    <sys:String x:Key="LOCStatisticCompletionStatusOnHold">En suspend</sys:String>
+    <sys:String x:Key="LOCStatisticCompletionStatusPlanToPlay">À lancer</sys:String>
+    <sys:String x:Key="LOCStatisticCompletionStatus">Progression</sys:String>
+
+    <sys:String x:Key="LOCStatisticsGraphicsTitlePlayTime">Temps de jeu total</sys:String>
+    <sys:String x:Key="LOCStatisticsGraphicsTitleGenre">Nombre total par genres</sys:String>
+</ResourceDictionary>

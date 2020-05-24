@@ -15,7 +15,7 @@
                 <Grid Margin="10,10,10,0">
                     <Label Content="{DynamicResource LOCStatisticsDataChoice}" VerticalAlignment="Top" Height="20" FontSize="16" FontWeight="Bold"></Label>
 
-                    <DockPanel VerticalAlignment="Bottom" Height="86" RenderTransformOrigin="0.5,0.5" Margin="15,0,0,0">
+                    <DockPanel VerticalAlignment="Bottom" Height="86" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center">
                         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
                             <ToggleButton Name="s0" Tag="null" Content="{DynamicResource LOCStatisticsDataChoiceAll}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="28" Margin="5" IsChecked="True" FontFamily="/Statistics;component/Ressources/#font" Click="ToggleButton_Click"></ToggleButton>
                             <ToggleButton Name="s1" Content="s1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="28" Margin="5" IsChecked="False" FontFamily="/Statistics;component/Ressources/#font" Click="ToggleButton_Click"></ToggleButton>
@@ -72,32 +72,32 @@
                         <!--Completation status-->
                         <StackPanel DockPanel.Dock="Bottom" Height="335">
                             <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
-                                <Label Content="{DynamicResource LOCCompletionStatus}" FontSize="16" VerticalAlignment="Top" FontWeight="Bold"/>
+                                <Label Content="{DynamicResource LOCStatisticCompletionStatus}" FontSize="16" VerticalAlignment="Top" FontWeight="Bold"/>
                             </StackPanel>
 
                             <Grid VerticalAlignment="Bottom" Margin="30,0,0,0">
-                                <Label Content="{DynamicResource LOCCompletionStatusNotPlayed}" FontSize="14" HorizontalAlignment="Left" Width="140" VerticalAlignment="Top" Height="28"/>
+                                <Label Content="{DynamicResource LOCStatisticCompletionStatusNotPlayed}" FontSize="14" HorizontalAlignment="Left" Width="140" VerticalAlignment="Top" Height="28"/>
                                 <ProgressBar x:Name="countNotPlayed" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="140" />
 
-                                <Label Content="{DynamicResource LOCCompletionStatusPlayed}" FontSize="14" HorizontalAlignment="Left" Width="140" VerticalAlignment="Top" Margin="0,35,0,0" Height="28"/>
+                                <Label Content="{DynamicResource LOCStatisticCompletionStatusPlayed}" FontSize="14" HorizontalAlignment="Left" Width="140" VerticalAlignment="Top" Margin="0,35,0,0" Height="28"/>
                                 <ProgressBar x:Name="countPlayed" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,35,0,0" HorizontalAlignment="Right" Width="140" />
 
-                                <Label Content="{DynamicResource LOCCompletionStatusBeaten}" FontSize="14" HorizontalAlignment="Left" Width="140" VerticalAlignment="Top" Margin="0,70,0,0" Height="28"/>
+                                <Label Content="{DynamicResource LOCStatisticCompletionStatusBeaten}" FontSize="14" HorizontalAlignment="Left" Width="140" VerticalAlignment="Top" Margin="0,70,0,0" Height="28"/>
                                 <ProgressBar x:Name="countBeaten" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,70,0,0" HorizontalAlignment="Right" Width="140" />
 
-                                <Label Content="{DynamicResource LOCCompletionStatusCompleted}" FontSize="14" HorizontalAlignment="Left" Width="140" VerticalAlignment="Top" Margin="0,105,0,0" Height="28"/>
+                                <Label Content="{DynamicResource LOCStatisticCompletionStatusCompleted}" FontSize="14" HorizontalAlignment="Left" Width="140" VerticalAlignment="Top" Margin="0,105,0,0" Height="28"/>
                                 <ProgressBar x:Name="countCompleted" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,105,0,0" HorizontalAlignment="Right" Width="140" />
 
-                                <Label Content="{DynamicResource LOCCompletionStatusPlaying}" FontSize="14" HorizontalAlignment="Left" Width="140" VerticalAlignment="Top" Margin="0,145,0,0" Height="28"/>
+                                <Label Content="{DynamicResource LOCStatisticCompletionStatusPlaying}" FontSize="14" HorizontalAlignment="Left" Width="140" VerticalAlignment="Top" Margin="0,145,0,0" Height="28"/>
                                 <ProgressBar x:Name="countPlaying" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,145,0,0" HorizontalAlignment="Right" Width="140" />
 
-                                <Label Content="{DynamicResource LOCCompletionStatusAbandoned}" FontSize="14" HorizontalAlignment="Left" Width="140" VerticalAlignment="Top" Margin="0,185,0,0" Height="28"/>
+                                <Label Content="{DynamicResource LOCStatisticCompletionStatusAbandoned}" FontSize="14" HorizontalAlignment="Left" Width="140" VerticalAlignment="Top" Margin="0,185,0,0" Height="28"/>
                                 <ProgressBar x:Name="countAbandoned" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,185,0,0" HorizontalAlignment="Right" Width="140" />
 
-                                <Label Content="{DynamicResource LOCCompletionStatusOnHold}" FontSize="14" HorizontalAlignment="Left" Width="140" VerticalAlignment="Top" Margin="0,220,0,0" Height="28"/>
+                                <Label Content="{DynamicResource LOCStatisticCompletionStatusOnHold}" FontSize="14" HorizontalAlignment="Left" Width="140" VerticalAlignment="Top" Margin="0,220,0,0" Height="28"/>
                                 <ProgressBar x:Name="countOnHold" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,220,0,0" HorizontalAlignment="Right" Width="140" />
 
-                                <Label Content="{DynamicResource LOCCompletionStatusPlanToPlay}" FontSize="14" HorizontalAlignment="Left" Width="140" VerticalAlignment="Top" Margin="0,255,0,0" Height="28"/>
+                                <Label Content="{DynamicResource LOCStatisticCompletionStatusPlanToPlay}" FontSize="14" HorizontalAlignment="Left" Width="140" VerticalAlignment="Top" Margin="0,255,0,0" Height="28"/>
                                 <ProgressBar x:Name="countPlanToPlay" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,255,0,0" HorizontalAlignment="Right" Width="140" />
                             </Grid>
                         </StackPanel>
