@@ -77,28 +77,52 @@
 
                             <Grid VerticalAlignment="Bottom" Margin="30,0,0,0">
                                 <Label Content="{DynamicResource LOCStatisticCompletionStatusNotPlayed}" FontSize="14" HorizontalAlignment="Left" Width="140" VerticalAlignment="Top" Height="28"/>
-                                <ProgressBar x:Name="countNotPlayed" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="140" />
+                                <Grid VerticalAlignment="Top" HorizontalAlignment="Right" Width="140" Height="28">
+                                    <ProgressBar x:Name="countNotPlayed" Minimum="0" Maximum="100"  Value="0"  />
+                                    <Label x:Name="labelCountNotPlayed" HorizontalAlignment="Center"></Label>
+                                </Grid>
 
                                 <Label Content="{DynamicResource LOCStatisticCompletionStatusPlayed}" FontSize="14" HorizontalAlignment="Left" Width="140" VerticalAlignment="Top" Margin="0,35,0,0" Height="28"/>
-                                <ProgressBar x:Name="countPlayed" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,35,0,0" HorizontalAlignment="Right" Width="140" />
+                                <Grid Height="28" VerticalAlignment="Top" Margin="0,35,0,0" HorizontalAlignment="Right" Width="140">
+                                    <ProgressBar x:Name="countPlayed" Minimum="0" Maximum="100"  Value="0" />
+                                    <Label x:Name="labelCountPlayed" HorizontalAlignment="Center"></Label>
+                                </Grid>
 
                                 <Label Content="{DynamicResource LOCStatisticCompletionStatusBeaten}" FontSize="14" HorizontalAlignment="Left" Width="140" VerticalAlignment="Top" Margin="0,70,0,0" Height="28"/>
-                                <ProgressBar x:Name="countBeaten" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,70,0,0" HorizontalAlignment="Right" Width="140" />
+                                <Grid Height="28" VerticalAlignment="Top" Margin="0,70,0,0" HorizontalAlignment="Right" Width="140">
+                                    <ProgressBar x:Name="countBeaten" Minimum="0" Maximum="100" Value="0" />
+                                    <Label x:Name="labelCountBeaten" HorizontalAlignment="Center"></Label>
+                                </Grid>
 
                                 <Label Content="{DynamicResource LOCStatisticCompletionStatusCompleted}" FontSize="14" HorizontalAlignment="Left" Width="140" VerticalAlignment="Top" Margin="0,105,0,0" Height="28"/>
-                                <ProgressBar x:Name="countCompleted" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,105,0,0" HorizontalAlignment="Right" Width="140" />
+                                <Grid Height="28" VerticalAlignment="Top" Margin="0,105,0,0" HorizontalAlignment="Right" Width="140">
+                                    <ProgressBar x:Name="countCompleted" Minimum="0" Maximum="100" Value="0" />
+                                    <Label x:Name="labelCountCompleted" HorizontalAlignment="Center"></Label>
+                                </Grid>
 
                                 <Label Content="{DynamicResource LOCStatisticCompletionStatusPlaying}" FontSize="14" HorizontalAlignment="Left" Width="140" VerticalAlignment="Top" Margin="0,145,0,0" Height="28"/>
-                                <ProgressBar x:Name="countPlaying" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,145,0,0" HorizontalAlignment="Right" Width="140" />
+                                <Grid Height="28" VerticalAlignment="Top" Margin="0,145,0,0" HorizontalAlignment="Right" Width="140">
+                                    <ProgressBar x:Name="countPlaying" Minimum="0" Maximum="100" Value="0" />
+                                    <Label x:Name="labelCountPlaying" HorizontalAlignment="Center"></Label>
+                                </Grid>
 
                                 <Label Content="{DynamicResource LOCStatisticCompletionStatusAbandoned}" FontSize="14" HorizontalAlignment="Left" Width="140" VerticalAlignment="Top" Margin="0,185,0,0" Height="28"/>
-                                <ProgressBar x:Name="countAbandoned" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,185,0,0" HorizontalAlignment="Right" Width="140" />
+                                <Grid Height="28" VerticalAlignment="Top" Margin="0,185,0,0" HorizontalAlignment="Right" Width="140">
+                                    <ProgressBar x:Name="countAbandoned" Minimum="0" Maximum="100" Value="0" />
+                                    <Label x:Name="labelCountAbandoned" HorizontalAlignment="Center"></Label>
+                                </Grid>
 
                                 <Label Content="{DynamicResource LOCStatisticCompletionStatusOnHold}" FontSize="14" HorizontalAlignment="Left" Width="140" VerticalAlignment="Top" Margin="0,220,0,0" Height="28"/>
-                                <ProgressBar x:Name="countOnHold" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,220,0,0" HorizontalAlignment="Right" Width="140" />
-
+                                <Grid Height="28" VerticalAlignment="Top" Margin="0,220,0,0" HorizontalAlignment="Right" Width="140">
+                                    <ProgressBar x:Name="countOnHold" Minimum="0" Maximum="100" Value="0" />
+                                    <Label x:Name="labelCountOnHold" HorizontalAlignment="Center"></Label>
+                                </Grid>
+                                
                                 <Label Content="{DynamicResource LOCStatisticCompletionStatusPlanToPlay}" FontSize="14" HorizontalAlignment="Left" Width="140" VerticalAlignment="Top" Margin="0,255,0,0" Height="28"/>
-                                <ProgressBar x:Name="countPlanToPlay" Minimum="0" Maximum="100" Height="28" Value="0" VerticalAlignment="Top" Margin="0,255,0,0" HorizontalAlignment="Right" Width="140" />
+                                <Grid Height="28" VerticalAlignment="Top" Margin="0,255,0,0" HorizontalAlignment="Right" Width="140">
+                                    <ProgressBar x:Name="countPlanToPlay" Minimum="0" Maximum="100" Value="0" />
+                                    <Label x:Name="labelCountPlanToPlay" HorizontalAlignment="Center"></Label>
+                                </Grid>
                             </Grid>
                         </StackPanel>
                     </DockPanel>

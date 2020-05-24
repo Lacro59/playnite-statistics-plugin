@@ -337,20 +337,28 @@ namespace Statistics.Views
 
             countNotPlayed.Value = NotPlayed;
             countNotPlayed.Maximum = stats.Total;
+            labelCountNotPlayed.Content = (int)Math.Round((double)(100 * NotPlayed) / stats.Total) + "%";
             countPlayed.Value = Played;
             countPlayed.Maximum = stats.Total;
+            labelCountPlayed.Content = (int)Math.Round((double)(100 * Played) / stats.Total) + "%";
             countBeaten.Value = Beaten;
             countBeaten.Maximum = stats.Total;
+            labelCountBeaten.Content = (int)Math.Round((double)(100 * Beaten) / stats.Total) + "%";
             countCompleted.Value = Completed;
             countCompleted.Maximum = stats.Total;
+            labelCountCompleted.Content = (int)Math.Round((double)(100 * Completed) / stats.Total) + "%";
             countPlaying.Value = Playing;
             countPlaying.Maximum = stats.Total;
+            labelCountPlaying.Content = (int)Math.Round((double)(100 * Playing) / stats.Total) + "%";
             countAbandoned.Value = Abandoned;
             countAbandoned.Maximum = stats.Total;
+            labelCountAbandoned.Content = (int)Math.Round((double)(100 * Abandoned) / stats.Total) + "%";
             countOnHold.Value = OnHold;
             countOnHold.Maximum = stats.Total;
+            labelCountOnHold.Content = (int)Math.Round((double)(100 * OnHold) / stats.Total) + "%";
             countPlanToPlay.Value = PlanToPlay;
             countPlanToPlay.Maximum = stats.Total;
+            labelCountPlanToPlay.Content = (int)Math.Round((double)(100 * PlanToPlay) / stats.Total) + "%";
 
             StatsGraphicPlaytime.Series = StatsGraphicsPlaytimeSeries;
             StatsGraphicPlaytimeX.LabelFormatter = value => (int)TimeSpan.FromSeconds(value).TotalHours + "h " + TimeSpan.FromSeconds(value).ToString(@"mm") + "min";
