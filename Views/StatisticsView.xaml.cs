@@ -288,9 +288,14 @@ namespace Statistics.Views
                     }
 
                     temp.Sort((a, b) => b.Count.CompareTo(a.Count));
-                    //temp.Reverse();
+                    if (temp.Count > 10)
+                    {
+                        temp = temp.GetRange(0, 10);
+                    }
+                    temp.Reverse();
 
                     StatsGraphicsPlaytimeLabels = new string[10];
+
                     foreach (var item in temp)
                     {
                         if (counter < 10)
