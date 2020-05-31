@@ -180,7 +180,7 @@ namespace Statistics.Views
                     }
                 }
             }
-            catch (Exception Ex)
+            catch
             {
                 //logger.Error(Ex, "ToggleButton_Checked");
                 desactiveToogleCheck = false;
