@@ -1,10 +1,12 @@
 ﻿using LiveCharts;
+using LiveCharts.Configurations;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
 using Newtonsoft.Json;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using PluginCommon;
+using Statistics.Common;
 using Statistics.Database;
 using Statistics.Models;
 using System;
@@ -200,7 +202,6 @@ namespace Statistics.Views
                 stats = StatisticsDatabase.Get(Guid.Parse(SourceID));
             }
 
-            logger.Debug(JsonConvert.SerializeObject(stats));
 
             long Total = 0;
             long TotalInstalled = 0;
@@ -219,7 +220,7 @@ namespace Statistics.Views
 
             SeriesCollection StatsGraphicsPlaytimeSeries = new SeriesCollection();
             string[] StatsGraphicsPlaytimeLabels = new string[0];
-            ChartValues<double> SourcePlaytimeSeries = new ChartValues<double>();
+            ChartValues<CustomerVm> SourcePlaytimeSeries = new ChartValues<CustomerVm>();
 
             SeriesCollection SourceGraphicsGenresSeries = new SeriesCollection();
 
@@ -265,23 +266,37 @@ namespace Statistics.Views
 
                 // Graphics playtime
                 int counter = 0;
+                List<dataTemp> temp = new List<dataTemp>();
                 if (SourceID == "null")
                 {
                     ConcurrentDictionary<Guid, StatisticsClass> StatisticsSourceDatabase = StatisticsDatabase.StatisticsSourceDatabase;
                     StatsGraphicsPlaytimeLabels = new string[StatisticsSourceDatabase.Count];
 
+                    temp = new List<dataTemp>();
                     foreach (var item in StatisticsSourceDatabase)
                     {
-                        SourcePlaytimeSeries.Add(item.Value.Playtime);
-                        StatsGraphicsPlaytimeLabels[counter] = item.Value.Name;
+                        temp.Add(new dataTemp() { Name = item.Value.Name, Count = item.Value.Playtime });
+                    }
+                    temp.Sort((a, b) => a.Count.CompareTo(b.Count));
+                    //temp.Reverse();
+
+                    foreach (var item in temp)
+                    {
+                        SourcePlaytimeSeries.Add(new CustomerVm
+                        {
+                            Name = item.Name,
+                            Values = item.Count,
+                            ValuesFormat = (int)TimeSpan.FromSeconds(item.Count).TotalHours + "h " + TimeSpan.FromSeconds(item.Count).ToString(@"mm") + "min"
+                        });
+                        StatsGraphicsPlaytimeLabels[counter] = item.Name;
                         counter += 1;
                     }
                 }
                 else
                 {
                     List<Counter> StatisticsSourceDatabase = StatisticsDatabase.Get(Guid.Parse(SourceID)).GameSource;
-                    List<dataTemp> temp = new List<dataTemp>();
 
+                    temp = new List<dataTemp>();
                     foreach (var item in StatisticsSourceDatabase)
                     {
                         temp.Add(new dataTemp() { Name = item.Name, Count = item.Count });
@@ -300,7 +315,10 @@ namespace Statistics.Views
                     {
                         if (counter < 10)
                         {
-                            SourcePlaytimeSeries.Add(item.Count);
+                            SourcePlaytimeSeries.Add(new CustomerVm
+                            {
+                                Name = item.Name, Values = item.Count, ValuesFormat = (int)TimeSpan.FromSeconds(item.Count).TotalHours + "h " + TimeSpan.FromSeconds(item.Count).ToString(@"mm") + "min"
+                            });
                             StatsGraphicsPlaytimeLabels[counter] = item.Name;
                             counter += 1;
                         }
@@ -314,7 +332,15 @@ namespace Statistics.Views
                 });
 
                 //Graphics genres
+                temp = new List<dataTemp>();
                 foreach (var item in stats.GameGenres)
+                {
+                    temp.Add(new dataTemp() { Name = item.Name, Count = item.Count });
+                }
+                temp.Sort((a, b) => a.Name.CompareTo(b.Name));
+                //temp.Reverse();
+
+                foreach (var item in temp)
                 {
                     SourceGraphicsGenresSeries.Add(new PieSeries
                     {
@@ -361,8 +387,18 @@ namespace Statistics.Views
             countPlanToPlay.Maximum = (stats == null) ? 1 : stats.Total;
             labelCountPlanToPlay.Content = (stats == null) ? "" : (int)Math.Round((double)(100 * PlanToPlay) / stats.Total) + "%";
 
+
+            //let create a mapper so LiveCharts know how to plot our CustomerViewModel class
+            var customerVmMapper = Mappers.Xy<CustomerVm>()
+                .Y((value, index) => index)
+                .X(value => value.Values);
+
+            //lets save the mapper globally
+            Charting.For<CustomerVm>(customerVmMapper);
+
+
             StatsGraphicPlaytime.Series = StatsGraphicsPlaytimeSeries;
-            StatsGraphicPlaytimeX.LabelFormatter = value => (int)TimeSpan.FromSeconds(value).TotalHours + "h " + TimeSpan.FromSeconds(value).ToString(@"mm") + "min";
+            //StatsGraphicPlaytimeX.LabelFormatter = value => (int)TimeSpan.FromSeconds(value).TotalHours + "h " + TimeSpan.FromSeconds(value).ToString(@"mm") + "min";
             StatsGraphicPlaytimeY.Labels = StatsGraphicsPlaytimeLabels;
 
             StatsGraphicGenres.Series = SourceGraphicsGenresSeries;

@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Statistics"
          xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+         xmlns:localLVC="clr-namespace:Statistics.Common"
          mc:Ignorable="d" Height="735" Width="1260" Background="{DynamicResource WindowBackgourndBrush}"
              ResizeMode="NoResize" Title="Statistics" WindowStartupLocation="CenterScreen">
 
@@ -139,9 +140,14 @@
 
                     <StackPanel DockPanel.Dock="Bottom" Margin="10,0,10,10">
                         <lvc:CartesianChart x:Name="StatsGraphicPlaytime" LegendLocation="None" Height="500">
+                            <lvc:CartesianChart.DataTooltip>
+                                <localLVC:CustomersTooltip/>
+                            </lvc:CartesianChart.DataTooltip>
+                            
                             <lvc:CartesianChart.AxisX>
                                 <lvc:Axis x:Name="StatsGraphicPlaytimeX" ShowLabels="False"></lvc:Axis>
                             </lvc:CartesianChart.AxisX>
+                            
                             <lvc:CartesianChart.AxisY>
                                 <lvc:Axis x:Name="StatsGraphicPlaytimeY">
                                     <lvc:Axis.Separator>
