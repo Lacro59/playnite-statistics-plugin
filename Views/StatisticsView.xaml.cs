@@ -182,7 +182,6 @@ namespace Statistics.Views
             }
             catch
             {
-                //logger.Error(Ex, "ToggleButton_Checked");
                 desactiveToogleCheck = false;
             }
 
@@ -200,6 +199,8 @@ namespace Statistics.Views
             {
                 stats = StatisticsDatabase.Get(Guid.Parse(SourceID));
             }
+
+            logger.Debug(JsonConvert.SerializeObject(stats));
 
             long Total = 0;
             long TotalInstalled = 0;
@@ -279,7 +280,6 @@ namespace Statistics.Views
                 else
                 {
                     List<Counter> StatisticsSourceDatabase = StatisticsDatabase.Get(Guid.Parse(SourceID)).GameSource;
-
                     List<dataTemp> temp = new List<dataTemp>();
 
                     foreach (var item in StatisticsSourceDatabase)
@@ -337,29 +337,29 @@ namespace Statistics.Views
             countTotalPlaytime.Content = TotalPlaytime;
 
             countNotPlayed.Value = NotPlayed;
-            countNotPlayed.Maximum = stats.Total;
-            labelCountNotPlayed.Content = (int)Math.Round((double)(100 * NotPlayed) / stats.Total) + "%";
+            countNotPlayed.Maximum = (stats == null) ? 1 : stats.Total;
+            labelCountNotPlayed.Content = (stats == null) ? "" : (int)Math.Round((double)(100 * NotPlayed) / stats.Total) + "%";
             countPlayed.Value = Played;
-            countPlayed.Maximum = stats.Total;
-            labelCountPlayed.Content = (int)Math.Round((double)(100 * Played) / stats.Total) + "%";
+            countPlayed.Maximum = (stats == null) ? 1 : stats.Total;
+            labelCountPlayed.Content = (stats == null) ? "" : (int)Math.Round((double)(100 * Played) / stats.Total) + "%";
             countBeaten.Value = Beaten;
-            countBeaten.Maximum = stats.Total;
-            labelCountBeaten.Content = (int)Math.Round((double)(100 * Beaten) / stats.Total) + "%";
+            countBeaten.Maximum = (stats == null) ? 1 : stats.Total;
+            labelCountBeaten.Content = (stats == null) ? "" : (int)Math.Round((double)(100 * Beaten) / stats.Total) + "%";
             countCompleted.Value = Completed;
-            countCompleted.Maximum = stats.Total;
-            labelCountCompleted.Content = (int)Math.Round((double)(100 * Completed) / stats.Total) + "%";
+            countCompleted.Maximum = (stats == null) ? 1 : stats.Total;
+            labelCountCompleted.Content = (stats == null) ? "" : (int)Math.Round((double)(100 * Completed) / stats.Total) + "%";
             countPlaying.Value = Playing;
-            countPlaying.Maximum = stats.Total;
-            labelCountPlaying.Content = (int)Math.Round((double)(100 * Playing) / stats.Total) + "%";
+            countPlaying.Maximum = (stats == null) ? 1 : stats.Total;
+            labelCountPlaying.Content = (stats == null) ? "" : (int)Math.Round((double)(100 * Playing) / stats.Total) + "%";
             countAbandoned.Value = Abandoned;
-            countAbandoned.Maximum = stats.Total;
-            labelCountAbandoned.Content = (int)Math.Round((double)(100 * Abandoned) / stats.Total) + "%";
+            countAbandoned.Maximum = (stats == null) ? 1 : stats.Total;
+            labelCountAbandoned.Content = (stats == null) ? "" : (int)Math.Round((double)(100 * Abandoned) / stats.Total) + "%";
             countOnHold.Value = OnHold;
-            countOnHold.Maximum = stats.Total;
-            labelCountOnHold.Content = (int)Math.Round((double)(100 * OnHold) / stats.Total) + "%";
+            countOnHold.Maximum = (stats == null) ? 1 : stats.Total;
+            labelCountOnHold.Content = (stats == null) ? "" : (int)Math.Round((double)(100 * OnHold) / stats.Total) + "%";
             countPlanToPlay.Value = PlanToPlay;
-            countPlanToPlay.Maximum = stats.Total;
-            labelCountPlanToPlay.Content = (int)Math.Round((double)(100 * PlanToPlay) / stats.Total) + "%";
+            countPlanToPlay.Maximum = (stats == null) ? 1 : stats.Total;
+            labelCountPlanToPlay.Content = (stats == null) ? "" : (int)Math.Round((double)(100 * PlanToPlay) / stats.Total) + "%";
 
             StatsGraphicPlaytime.Series = StatsGraphicsPlaytimeSeries;
             StatsGraphicPlaytimeX.LabelFormatter = value => (int)TimeSpan.FromSeconds(value).TotalHours + "h " + TimeSpan.FromSeconds(value).ToString(@"mm") + "min";
