@@ -337,7 +337,7 @@ namespace Statistics.Views
                 {
                     temp.Add(new dataTemp() { Name = item.Name, Count = item.Count });
                 }
-                temp.Sort((a, b) => a.Name.CompareTo(b.Name));
+                temp.Sort((a, b) => b.Count.CompareTo(a.Count));
                 //temp.Reverse();
 
                 foreach (var item in temp)

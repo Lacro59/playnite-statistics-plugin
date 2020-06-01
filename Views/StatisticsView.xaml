@@ -4,9 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Statistics"
-         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
-         xmlns:localLVC="clr-namespace:Statistics.Common"
-         mc:Ignorable="d" Height="735" Width="1260" Background="{DynamicResource WindowBackgourndBrush}"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:localLVC="clr-namespace:Statistics.Common"
+             mc:Ignorable="d" Height="735" Width="1260" Background="{DynamicResource WindowBackgourndBrush}"
              ResizeMode="NoResize" Title="Statistics" WindowStartupLocation="CenterScreen">
 
     <DockPanel>
@@ -167,6 +167,10 @@
 
                     <StackPanel DockPanel.Dock="Bottom" Margin="10,0,10,10">
                         <lvc:PieChart x:Name="StatsGraphicGenres" LegendLocation="none" Height="500">
+                            <lvc:PieChart.DataTooltip>
+                                <lvc:DefaultTooltip Background="#E4555555" Padding="10 10" BorderThickness="2" BorderBrush="#555555" Foreground="White" />
+                            </lvc:PieChart.DataTooltip>
+
                             <lvc:PieChart.Series>
                                 <lvc:PieSeries Title="Maria" Values="3" DataLabels="True"/>
                                 <lvc:PieSeries Title="Charles" Values="4" DataLabels="True"/>
@@ -179,4 +183,5 @@
             </DockPanel>
         </DockPanel>
     </DockPanel>
+    
 </Window>

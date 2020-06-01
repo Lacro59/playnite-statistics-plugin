@@ -8,7 +8,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" 
              d:DataContext="{d:DesignInstance local:CustomersTooltip}"
-             Background="#E4555555" Padding="20 10" BorderThickness="2" BorderBrush="#555555">
+             Background="#E4555555" Padding="10 10" BorderThickness="2" BorderBrush="#555555">
+    
     <ItemsControl ItemsSource="{Binding Data.Points}" Grid.IsSharedSizeScope="True">
         <ItemsControl.ItemTemplate>
             <DataTemplate DataType="{x:Type wpf:DataPointViewModel}">
@@ -27,4 +28,6 @@
             </DataTemplate>
         </ItemsControl.ItemTemplate>
     </ItemsControl>
+    
 </UserControl>
+    
