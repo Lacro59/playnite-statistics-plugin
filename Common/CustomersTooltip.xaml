@@ -21,7 +21,7 @@
 
                     <TextBlock Grid.Column="0" Text="{Binding ChartPoint.Instance.(local:CustomerVm.Name)}" Height="15"
                                Margin="5 0 0 0" VerticalAlignment="Center" Foreground="White"/>
-                    <TextBlock Grid.Column="1" Text="{Binding ChartPoint.Instance.(local:CustomerVm.ValuesFormat)}" 
+                    <TextBlock Grid.Column="1" Text="{Binding ChartPoint.Instance.(local:CustomerVm.ValuesFormat)}" Height="15"
                                Margin="5 0 0 0" VerticalAlignment="Center" Foreground="White"/>
                     
                 </Grid>
