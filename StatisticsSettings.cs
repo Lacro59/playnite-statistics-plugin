@@ -12,9 +12,7 @@ namespace Statistics
     {
         private readonly Statistics plugin;
 
-        public string Option1 { get; set; } = string.Empty;
-
-        public bool Option2 { get; set; } = false;
+        public bool IncludeHiddenGames { get; set; } = false;
 
         // Playnite serializes settings object to a JSON object and saves it as text file.
         // If you want to exclude some property from being saved then use `JsonIgnore` ignore attribute.
@@ -37,8 +35,7 @@ namespace Statistics
             // LoadPluginSettings returns null if not saved data is available.
             if (savedSettings != null)
             {
-                Option1 = savedSettings.Option1;
-                Option2 = savedSettings.Option2;
+                IncludeHiddenGames = savedSettings.IncludeHiddenGames;
             }
         }
 

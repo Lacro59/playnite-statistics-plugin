@@ -30,7 +30,7 @@ namespace Statistics.Views
 
         public StatisticsView(StatisticsSettings settings, IGameDatabaseAPI PlayniteApiDatabase, string PluginUserDataPath)
         {
-            StatisticsDatabase.Initialize(PlayniteApiDatabase);
+            StatisticsDatabase.Initialize(PlayniteApiDatabase, settings);
 
             InitializeComponent();
 
@@ -342,7 +342,6 @@ namespace Statistics.Views
                     SourceGraphicsGenresSeries.Add(new PieSeries
                     {
                         Title = item.Name,
-                        //Values = new ChartValues<ObservableValue> { new ObservableValue(item.Count) },
                         Values = new ChartValues<CustomerForSingle> { new CustomerForSingle { Name = item.Name, Values = item.Count } },
                         DataLabels = true
                     });

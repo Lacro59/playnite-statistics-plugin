@@ -16,7 +16,7 @@ namespace Statistics.Database
         public ConcurrentDictionary<Guid, StatisticsClass> StatisticsSourceDatabase { get; set; }
 
 
-        public void Initialize(IGameDatabaseAPI PlayniteApiDatabase)
+        public void Initialize(IGameDatabaseAPI PlayniteApiDatabase, StatisticsSettings settings)
         {
             Statistics = new StatisticsClass
             {
@@ -36,8 +36,19 @@ namespace Statistics.Database
 
             foreach (var Game in PlayniteApiDatabase.Games)
             {
-                Add(Game);
-                Add(Game, Game.SourceId);
+                if (!Game.Hidden)
+                {
+                    Add(Game);
+                    Add(Game, Game.SourceId);
+                }
+                else
+                {
+                    if (settings.IncludeHiddenGames)
+                    {
+                        Add(Game);
+                        Add(Game, Game.SourceId);
+                    }
+                }
             }
         }
 

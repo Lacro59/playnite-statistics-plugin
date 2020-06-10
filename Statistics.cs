@@ -1,12 +1,12 @@
 ﻿using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
-using PluginCommon;
 using Statistics.Views;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Windows.Controls;
 
 namespace Statistics
 {
@@ -40,7 +40,6 @@ namespace Statistics
                     () =>
                     {
                         // Add code to be execute when user invokes this menu entry.
-                        //PlayniteApi.Dialogs.ShowMessage("Code executed from a plugin!");
 
                         // Show SuccessView
                         new StatisticsView(settings, PlayniteApi.Database, this.GetPluginUserDataPath()).ShowDialog();
@@ -93,9 +92,9 @@ namespace Statistics
             return settings;
         }
 
-        //public override UserControl GetSettingsView(bool firstRunSettings)
-        //{
-        //    return new StatisticsSettingsView();
-        //}
+        public override UserControl GetSettingsView(bool firstRunSettings)
+        {
+            return new StatisticsSettingsView();
+        }
     }
 }
