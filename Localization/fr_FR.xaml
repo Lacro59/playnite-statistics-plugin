@@ -9,6 +9,8 @@
     StatisticsyView 
     -->
 
+    <sys:String x:Key="LOCStatisticsSwitchData">Top jeux</sys:String>
+
     <sys:String x:Key="LOCStatisticsDataChoice">Sélection des données</sys:String>
     <sys:String x:Key="LOCStatisticsDataChoiceAll">Toutes les sources</sys:String>
 

@@ -138,7 +138,17 @@
                 <!--Playtime-->
                 <DockPanel DockPanel.Dock="Left" Width="448">
                     <StackPanel DockPanel.Dock="Top" Margin="10">
-                        <Label Content="{DynamicResource LOCStatisticsGraphicsTitlePlayTime}" FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Center" FontWeight="Bold"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="100" />
+                            </Grid.ColumnDefinitions>
+
+                            <ToggleButton Grid.Column="0" Name="SwitchData" Content="{DynamicResource LOCStatisticsSwitchData}" IsChecked="False" Click="SwitchData_Click"></ToggleButton>
+                            <Label Grid.Column="1" Content="{DynamicResource LOCStatisticsGraphicsTitlePlayTime}" FontSize="16" HorizontalAlignment="Center" FontWeight="Bold"/>
+                            <Label Grid.Column="2"></Label>
+                        </Grid>
                     </StackPanel>
 
                     <StackPanel DockPanel.Dock="Bottom" Margin="10,0,10,10">

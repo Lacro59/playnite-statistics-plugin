@@ -1,7 +1,7 @@
 ﻿using LiveCharts;
 using LiveCharts.Configurations;
-using LiveCharts.Defaults;
 using LiveCharts.Wpf;
+using Newtonsoft.Json;
 using Playnite.Controls;
 using Playnite.SDK;
 using Playnite.SDK.Models;
@@ -196,10 +196,12 @@ namespace Statistics.Views
             if (SourceID == "null")
             {
                 stats = StatisticsDatabase.Statistics;
+                SwitchData.Visibility = Visibility.Visible;
             }
             else
             {
                 stats = StatisticsDatabase.Get(Guid.Parse(SourceID));
+                SwitchData.Visibility = Visibility.Hidden;
             }
 
 
@@ -271,23 +273,61 @@ namespace Statistics.Views
                 {
                     ConcurrentDictionary<Guid, StatisticsClass> StatisticsSourceDatabase = StatisticsDatabase.StatisticsSourceDatabase;
                     StatsGraphicsPlaytimeLabels = new string[StatisticsSourceDatabase.Count];
-
                     temp = new List<dataTemp>();
-                    foreach (var item in StatisticsSourceDatabase)
-                    {
-                        temp.Add(new dataTemp() { Name = item.Value.Name, Count = item.Value.Playtime });
-                    }
-                    temp.Sort((a, b) => a.Count.CompareTo(b.Count));
 
-                    foreach (var item in temp)
+                    if (!(bool)SwitchData.IsChecked)
                     {
-                        SourcePlaytimeSeries.Add(new CustomerForTime
+                        foreach (var item in StatisticsSourceDatabase)
                         {
-                            Name = item.Name,
-                            Values = item.Count
-                        });
-                        StatsGraphicsPlaytimeLabels[counter] = item.Name;
-                        counter += 1;
+                            temp.Add(new dataTemp() { Name = item.Value.Name, Count = item.Value.Playtime });
+                        }
+                        temp.Sort((a, b) => a.Count.CompareTo(b.Count));
+
+                        foreach (var item in temp)
+                        {
+                            SourcePlaytimeSeries.Add(new CustomerForTime
+                            {
+                                Name = item.Name,
+                                Values = item.Count
+                            });
+                            StatsGraphicsPlaytimeLabels[counter] = item.Name;
+                            counter += 1;
+                        }
+                    }
+                    else
+                    {
+                        foreach (var itemAll in StatisticsSourceDatabase)
+                        {
+                            foreach (var item in itemAll.Value.GameSource)
+                            {
+                                temp.Add(new dataTemp() { Name = item.Name, Count = item.Count });
+                            }
+                        }
+
+                        temp.Sort((a, b) => b.Count.CompareTo(a.Count));
+                        if (temp.Count > 10)
+                        {
+                            temp = temp.GetRange(0, 10);
+                        }
+                        temp.Reverse();
+
+                        StatsGraphicsPlaytimeLabels = new string[10];
+
+                        foreach (var item in temp)
+                        {
+                            if (counter < 10)
+                            {
+                                SourcePlaytimeSeries.Add(new CustomerForTime
+                                {
+                                    Name = item.Name,
+                                    Values = item.Count
+                                });
+                                StatsGraphicsPlaytimeLabels[counter] = item.Name;
+                                counter += 1;
+                            }
+                        }
+
+                        logger.Debug(JsonConvert.SerializeObject(temp));
                     }
                 }
                 else
@@ -413,6 +453,11 @@ namespace Statistics.Views
         private void S0_Loaded(object sender, RoutedEventArgs e)
         {
             Tools.DesactivePlayniteWindowControl(this);
+        }
+
+        private void SwitchData_Click(object sender, RoutedEventArgs e)
+        {
+            SetData("null");
         }
     }
 }
