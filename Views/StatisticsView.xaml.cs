@@ -6,17 +6,14 @@ using Playnite.Controls;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using PluginCommon;
-using Statistics.Common;
+using PluginCommon.LiveChartsCommon;
 using Statistics.Database;
 using Statistics.Models;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Threading;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Threading;
 
 namespace Statistics.Views
 {
@@ -223,7 +220,7 @@ namespace Statistics.Views
 
             SeriesCollection StatsGraphicsPlaytimeSeries = new SeriesCollection();
             string[] StatsGraphicsPlaytimeLabels = new string[0];
-            ChartValues<CustomerVm> SourcePlaytimeSeries = new ChartValues<CustomerVm>();
+            ChartValues<CustomerForTime> SourcePlaytimeSeries = new ChartValues<CustomerForTime>();
 
             SeriesCollection SourceGraphicsGenresSeries = new SeriesCollection();
 
@@ -281,15 +278,13 @@ namespace Statistics.Views
                         temp.Add(new dataTemp() { Name = item.Value.Name, Count = item.Value.Playtime });
                     }
                     temp.Sort((a, b) => a.Count.CompareTo(b.Count));
-                    //temp.Reverse();
 
                     foreach (var item in temp)
                     {
-                        SourcePlaytimeSeries.Add(new CustomerVm
+                        SourcePlaytimeSeries.Add(new CustomerForTime
                         {
                             Name = item.Name,
-                            Values = item.Count,
-                            ValuesFormat = (int)TimeSpan.FromSeconds(item.Count).TotalHours + "h " + TimeSpan.FromSeconds(item.Count).ToString(@"mm") + "min"
+                            Values = item.Count
                         });
                         StatsGraphicsPlaytimeLabels[counter] = item.Name;
                         counter += 1;
@@ -318,9 +313,9 @@ namespace Statistics.Views
                     {
                         if (counter < 10)
                         {
-                            SourcePlaytimeSeries.Add(new CustomerVm
+                            SourcePlaytimeSeries.Add(new CustomerForTime
                             {
-                                Name = item.Name, Values = item.Count, ValuesFormat = (int)TimeSpan.FromSeconds(item.Count).TotalHours + "h " + TimeSpan.FromSeconds(item.Count).ToString(@"mm") + "min"
+                                Name = item.Name, Values = item.Count
                             });
                             StatsGraphicsPlaytimeLabels[counter] = item.Name;
                             counter += 1;
@@ -341,14 +336,14 @@ namespace Statistics.Views
                     temp.Add(new dataTemp() { Name = item.Name, Count = item.Count });
                 }
                 temp.Sort((a, b) => b.Count.CompareTo(a.Count));
-                //temp.Reverse();
 
                 foreach (var item in temp)
                 {
                     SourceGraphicsGenresSeries.Add(new PieSeries
                     {
                         Title = item.Name,
-                        Values = new ChartValues<ObservableValue> { new ObservableValue(item.Count) },
+                        //Values = new ChartValues<ObservableValue> { new ObservableValue(item.Count) },
+                        Values = new ChartValues<CustomerForSingle> { new CustomerForSingle { Name = item.Name, Values = item.Count } },
                         DataLabels = true
                     });
                 }
@@ -392,16 +387,24 @@ namespace Statistics.Views
 
 
             //let create a mapper so LiveCharts know how to plot our CustomerViewModel class
-            var customerVmMapper = Mappers.Xy<CustomerVm>()
+            var customerVmMapper = Mappers.Xy<CustomerForTime>()
                 .Y((value, index) => index)
                 .X(value => value.Values);
 
             //lets save the mapper globally
-            Charting.For<CustomerVm>(customerVmMapper);
+            Charting.For<CustomerForTime>(customerVmMapper);
+
+
+            //let create a mapper so LiveCharts know how to plot our CustomerViewModel class
+            var customerVmMapperPie = Mappers.Xy<CustomerForSingle>()
+                .X((value, index) => index)
+                .Y(value => value.Values);
+
+            //lets save the mapper globally
+            Charting.For<CustomerForSingle>(customerVmMapperPie);
 
 
             StatsGraphicPlaytime.Series = StatsGraphicsPlaytimeSeries;
-            //StatsGraphicPlaytimeX.LabelFormatter = value => (int)TimeSpan.FromSeconds(value).TotalHours + "h " + TimeSpan.FromSeconds(value).ToString(@"mm") + "min";
             StatsGraphicPlaytimeY.Labels = StatsGraphicsPlaytimeLabels;
 
             StatsGraphicGenres.Series = SourceGraphicsGenresSeries;

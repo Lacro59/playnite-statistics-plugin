@@ -42,7 +42,10 @@
                 <ResourceDictionary Source="Resources/PlayniteResources/DefaultControls/ToggleButton.xaml" />
                 <ResourceDictionary Source="Resources/PlayniteResources/DefaultControls/ToolTip.xaml" />
                 <ResourceDictionary Source="Resources/PlayniteResources/DefaultControls/TreeView.xaml" />
-                
+
+                <!--PluginCommon-->
+                <ResourceDictionary Source="Resources/LiveChartsCommon/Common.xaml" />
+
                 <!--Default localization-->
                 <ResourceDictionary Source="Localization/LocSource.xaml" />
             </ResourceDictionary.MergedDictionaries>

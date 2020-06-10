@@ -26,7 +26,9 @@ namespace Statistics
             string pluginFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
             // Add plugin localization in application ressource.
-            Localization.SetPluginLanguage(pluginFolder, api.Paths.ConfigurationPath);
+            PluginCommon.Localization.SetPluginLanguage(pluginFolder, api.Paths.ConfigurationPath);
+            // Add common in application ressource.
+            PluginCommon.Common.Load(pluginFolder);
         }
 
         public override IEnumerable<ExtensionFunction> GetFunctions()

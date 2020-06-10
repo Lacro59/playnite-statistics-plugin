@@ -6,7 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Statistics"
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
-             xmlns:localLVC="clr-namespace:Statistics.Common"
+             xmlns:localLVC="clr-namespace:PluginCommon.LiveChartsCommon;assembly=PluginCommon"
              d:DesignStyle="{StaticResource WindowDesignStyle}"
              Style="{DynamicResource StandardWindowStyle}"
              mc:Ignorable="d" Height="735" Width="1260" Background="{DynamicResource WindowBackgourndBrush}"
@@ -144,7 +144,7 @@
                     <StackPanel DockPanel.Dock="Bottom" Margin="10,0,10,10">
                         <lvc:CartesianChart x:Name="StatsGraphicPlaytime" LegendLocation="None" Height="500">
                             <lvc:CartesianChart.DataTooltip>
-                                <localLVC:CustomersTooltip/>
+                                <localLVC:CustomerToolTipForTime/>
                             </lvc:CartesianChart.DataTooltip>
                             
                             <lvc:CartesianChart.AxisX>
@@ -171,7 +171,7 @@
                     <StackPanel DockPanel.Dock="Bottom" Margin="10,0,10,10">
                         <lvc:PieChart x:Name="StatsGraphicGenres" LegendLocation="none" Height="500">
                             <lvc:PieChart.DataTooltip>
-                                <lvc:DefaultTooltip Background="#E4555555" Padding="10 10" BorderThickness="2" BorderBrush="#555555" Foreground="White" />
+                                <localLVC:CustomerToolTipForMultipleSingle/>
                             </lvc:PieChart.DataTooltip>
 
                             <lvc:PieChart.Series>
