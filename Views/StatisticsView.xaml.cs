@@ -2,7 +2,7 @@
 using LiveCharts.Configurations;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
-using Newtonsoft.Json;
+using Playnite.Controls;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using PluginCommon;
@@ -12,15 +12,18 @@ using Statistics.Models;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Threading;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Threading;
 
 namespace Statistics.Views
 {
     /// <summary>
     /// Logique d'interaction pour StatisticsView.xaml
     /// </summary>
-    public partial class StatisticsView : Window
+    public partial class StatisticsView : WindowBase
     {
         private static readonly ILogger logger = LogManager.GetLogger();
         private static StatisticsDatabase StatisticsDatabase = new StatisticsDatabase();
@@ -402,6 +405,12 @@ namespace Statistics.Views
             StatsGraphicPlaytimeY.Labels = StatsGraphicsPlaytimeLabels;
 
             StatsGraphicGenres.Series = SourceGraphicsGenresSeries;
+        }
+
+
+        private void S0_Loaded(object sender, RoutedEventArgs e)
+        {
+            Tools.DesactivePlayniteWindowControl(this);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿<Window  x:Class="Statistics.Views.StatisticsView"
+﻿<controls:WindowBase
+    xmlns:controls="clr-namespace:Playnite.Controls;assembly=Playnite" x:Class="Statistics.Views.StatisticsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,8 +7,10 @@
              xmlns:local="clr-namespace:Statistics"
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              xmlns:localLVC="clr-namespace:Statistics.Common"
+             d:DesignStyle="{StaticResource WindowDesignStyle}"
+             Style="{DynamicResource StandardWindowStyle}"
              mc:Ignorable="d" Height="735" Width="1260" Background="{DynamicResource WindowBackgourndBrush}"
-             ResizeMode="NoResize" Title="Statistics" WindowStartupLocation="CenterScreen">
+             ResizeMode="NoResize" Title="Statistics" WindowStartupLocation="CenterScreen" WindowStyle="None">
 
     <DockPanel>
         <!--Select data-->
@@ -18,7 +21,7 @@
 
                     <DockPanel VerticalAlignment="Bottom" Height="86" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center">
                         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                            <ToggleButton Name="s0" Tag="null" Content="{DynamicResource LOCStatisticsDataChoiceAll}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="28" Margin="5" IsChecked="True" FontFamily="/Statistics;component/Resources/#font" Click="ToggleButton_Click"></ToggleButton>
+                            <ToggleButton Name="s0" Tag="null" Content="{DynamicResource LOCStatisticsDataChoiceAll}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="28" Margin="5" IsChecked="True" FontFamily="/Statistics;component/Resources/#font" Click="ToggleButton_Click" Loaded="S0_Loaded"></ToggleButton>
                             <ToggleButton Name="s1" Content="s1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="28" Margin="5" IsChecked="False" FontFamily="/Statistics;component/Resources/#font" Click="ToggleButton_Click"></ToggleButton>
                             <ToggleButton Name="s2" Content="s2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="28" Margin="5" IsChecked="False" FontFamily="/Statistics;component/Resources/#font" Click="ToggleButton_Click"></ToggleButton>
                             <ToggleButton Name="s3" Content="s3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="28" Margin="5" IsChecked="False" FontFamily="/Statistics;component/Resources/#font" Click="ToggleButton_Click"></ToggleButton>
@@ -183,5 +186,5 @@
             </DockPanel>
         </DockPanel>
     </DockPanel>
-    
-</Window>
+
+</controls:WindowBase>
