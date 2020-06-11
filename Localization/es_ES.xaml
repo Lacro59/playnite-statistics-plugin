@@ -9,7 +9,7 @@
     StatisticsyView 
     -->
 
-    <sys:String x:Key="LOCStatisticsSwitchData">Top games</sys:String>
+    <sys:String x:Key="LOCStatisticsSwitchData">Juegos más altos</sys:String>
 
     <sys:String x:Key="LOCStatisticsDataChoice">Seleccionar información</sys:String>
     <sys:String x:Key="LOCStatisticsDataChoiceAll">Todas las fuentes</sys:String>
@@ -19,7 +19,7 @@
     <sys:String x:Key="LOCStatisticsDataTotalInstalled">Instalado</sys:String>
     <sys:String x:Key="LOCStatisticsDataTotalNotLaunching">No jugado</sys:String>
     <sys:String x:Key="LOCStatisticsDataTotalFavorite">Favorites</sys:String>
-    <sys:String x:Key="LOCStatisticsDataTotalPlaytime">Total play time</sys:String>
+    <sys:String x:Key="LOCStatisticsDataTotalPlaytime">Total de tiempo de juego</sys:String>
 
     <sys:String x:Key="LOCStatisticCompletionStatusNotPlayed">No jugado</sys:String>
     <sys:String x:Key="LOCStatisticCompletionStatusPlayed">Jugado</sys:String>
@@ -38,5 +38,5 @@
     StatisticsyViewSettings
     -->
 
-    <sys:String x:Key="LOCStatisticsEnableIncludeHiddenGames">Include hiddent games.</sys:String>
+    <sys:String x:Key="LOCStatisticsEnableIncludeHiddenGames">Incluir juegos ocultos.</sys:String>
 </ResourceDictionary>
