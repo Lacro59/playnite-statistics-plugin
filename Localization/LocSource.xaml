@@ -38,5 +38,5 @@
     StatisticsyViewSettings
     -->
 
-    <sys:String x:Key="LOCStatisticsEnableIncludeHiddenGames">Include hiddent games.</sys:String>
+    <sys:String x:Key="LOCStatisticsEnableIncludeHiddenGames">Include hidden games</sys:String>
 </ResourceDictionary>
