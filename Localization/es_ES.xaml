@@ -1,15 +1,13 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
-    <!--
-    THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
-    -->
 
     <!-- 
     StatisticsyView 
     -->
 
-    <sys:String x:Key="LOCStatisticsSwitchData">Juegos más altos</sys:String>
+    <sys:String x:Key="LOCStatisticsSwitchDataGames">Juegos más altos</sys:String>
+    <sys:String x:Key="LOCStatisticsSwitchDataSources">Top sources</sys:String>
 
     <sys:String x:Key="LOCStatisticsDataChoice">Seleccionar información</sys:String>
     <sys:String x:Key="LOCStatisticsDataChoiceAll">Todas las fuentes</sys:String>
@@ -39,4 +37,6 @@
     -->
 
     <sys:String x:Key="LOCStatisticsEnableIncludeHiddenGames">Incluir juegos ocultos</sys:String>
+    <sys:String x:Key="LOCStatisticsPreferTopGames">Prefer "Top games" when "All sources"</sys:String>
+    
 </ResourceDictionary>

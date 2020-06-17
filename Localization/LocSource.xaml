@@ -6,7 +6,8 @@
     StatisticsyView 
     -->
 
-    <sys:String x:Key="LOCStatisticsSwitchData">Top games</sys:String>
+    <sys:String x:Key="LOCStatisticsSwitchDataGames">Top games</sys:String>
+    <sys:String x:Key="LOCStatisticsSwitchDataSources">Top sources</sys:String>
     
     <sys:String x:Key="LOCStatisticsDataChoice">Select data</sys:String>
     <sys:String x:Key="LOCStatisticsDataChoiceAll">All sources</sys:String>
@@ -36,5 +37,6 @@
     -->
 
     <sys:String x:Key="LOCStatisticsEnableIncludeHiddenGames">Include hidden games</sys:String>
+    <sys:String x:Key="LOCStatisticsPreferTopGames">Prefer "Top games" when "All sources"</sys:String>
     
 </ResourceDictionary>

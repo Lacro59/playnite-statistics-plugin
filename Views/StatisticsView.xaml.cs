@@ -34,6 +34,12 @@ namespace Statistics.Views
 
             InitializeComponent();
 
+            if (!settings.PreferTopGames)
+            {
+                SwitchDataGames.IsChecked = false;
+                SwitchDataSources.IsChecked = true;
+            }
+
             SetListSource(PlayniteApiDatabase);
             _lastToggleButton = s0;
             s0.IsChecked = true;
@@ -196,12 +202,14 @@ namespace Statistics.Views
             if (SourceID == "null")
             {
                 stats = StatisticsDatabase.Statistics;
-                SwitchData.Visibility = Visibility.Visible;
+                SwitchDataGames.Visibility = Visibility.Visible;
+                SwitchDataSources.Visibility = Visibility.Visible;
             }
             else
             {
                 stats = StatisticsDatabase.Get(Guid.Parse(SourceID));
-                SwitchData.Visibility = Visibility.Hidden;
+                SwitchDataGames.Visibility = Visibility.Hidden;
+                SwitchDataSources.Visibility = Visibility.Hidden;
             }
 
 
@@ -275,7 +283,7 @@ namespace Statistics.Views
                     StatsGraphicsPlaytimeLabels = new string[StatisticsSourceDatabase.Count];
                     temp = new List<dataTemp>();
 
-                    if (!(bool)SwitchData.IsChecked)
+                    if (!(bool)SwitchDataGames.IsChecked)
                     {
                         foreach (var item in StatisticsSourceDatabase)
                         {
@@ -457,6 +465,16 @@ namespace Statistics.Views
 
         private void SwitchData_Click(object sender, RoutedEventArgs e)
         {
+            if (((ToggleButton)sender).Name == "SwitchDataGames")
+            {
+                SwitchDataSources.IsChecked = !((ToggleButton)sender).IsChecked;
+            }
+            else
+            {
+                SwitchDataGames.IsChecked = !((ToggleButton)sender).IsChecked;
+            }
+
+
             SetData("null");
         }
     }

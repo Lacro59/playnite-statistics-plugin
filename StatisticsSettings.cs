@@ -1,10 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Playnite.SDK;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Statistics
 {
@@ -13,6 +10,7 @@ namespace Statistics
         private readonly Statistics plugin;
 
         public bool IncludeHiddenGames { get; set; } = false;
+        public bool PreferTopGames { get; set; } = true;
 
         // Playnite serializes settings object to a JSON object and saves it as text file.
         // If you want to exclude some property from being saved then use `JsonIgnore` ignore attribute.
@@ -36,6 +34,7 @@ namespace Statistics
             if (savedSettings != null)
             {
                 IncludeHiddenGames = savedSettings.IncludeHiddenGames;
+                PreferTopGames = savedSettings.PreferTopGames;
             }
         }
 

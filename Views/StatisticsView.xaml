@@ -140,14 +140,14 @@
                     <StackPanel DockPanel.Dock="Top" Margin="10">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="110" />
                                 <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="110" />
                             </Grid.ColumnDefinitions>
 
-                            <ToggleButton Grid.Column="0" Name="SwitchData" Content="{DynamicResource LOCStatisticsSwitchData}" IsChecked="False" Click="SwitchData_Click"></ToggleButton>
+                            <ToggleButton Grid.Column="0" Name="SwitchDataGames" Content="{DynamicResource LOCStatisticsSwitchDataGames}" IsChecked="True" Click="SwitchData_Click"></ToggleButton>
                             <Label Grid.Column="1" Content="{DynamicResource LOCStatisticsGraphicsTitlePlayTime}" FontSize="16" HorizontalAlignment="Center" FontWeight="Bold"/>
-                            <Label Grid.Column="2"></Label>
+                            <ToggleButton Grid.Column="2" Name="SwitchDataSources" Content="{DynamicResource LOCStatisticsSwitchDataSources}" IsChecked="False" Click="SwitchData_Click"></ToggleButton>
                         </Grid>
                     </StackPanel>
 
