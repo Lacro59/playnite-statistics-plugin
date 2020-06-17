@@ -9,7 +9,7 @@
              xmlns:localLVC="clr-namespace:PluginCommon.LiveChartsCommon;assembly=PluginCommon"
              d:DesignStyle="{StaticResource WindowDesignStyle}"
              Style="{DynamicResource StandardWindowStyle}"
-             mc:Ignorable="d" Height="735" Width="1260" Background="{DynamicResource WindowBackgourndBrush}"
+             mc:Ignorable="d" Height="740" Width="1260" Background="{DynamicResource WindowBackgourndBrush}"
              ResizeMode="NoResize" Title="Statistics" WindowStartupLocation="CenterScreen" WindowStyle="None">
 
     <DockPanel>
@@ -50,7 +50,7 @@
                 <Border BorderThickness="{DynamicResource PopupBorderThickness}" BorderBrush="{DynamicResource NormalBorderBrush}">
                     <DockPanel Margin="10">
                         <!--Information-->
-                        <StackPanel DockPanel.Dock="Top" Height="180">
+                        <StackPanel DockPanel.Dock="Top" Height="180" Margin="0,0,0,20">
                             <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
                                 <Label Content="{DynamicResource LOCStatisticsDataTitle}" FontSize="16" VerticalAlignment="Top" FontWeight="Bold" HorizontalAlignment="Left"/>
                             </StackPanel>

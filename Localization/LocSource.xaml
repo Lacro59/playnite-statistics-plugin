@@ -1,9 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
-    <!--
-    THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
-    -->
 
     <!-- 
     StatisticsyView 
@@ -39,4 +36,5 @@
     -->
 
     <sys:String x:Key="LOCStatisticsEnableIncludeHiddenGames">Include hidden games</sys:String>
+    
 </ResourceDictionary>
