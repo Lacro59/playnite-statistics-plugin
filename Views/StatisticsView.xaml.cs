@@ -1,8 +1,6 @@
 ﻿using LiveCharts;
 using LiveCharts.Configurations;
 using LiveCharts.Wpf;
-using LiveCharts.Wpf.Points;
-using Newtonsoft.Json;
 using Playnite.Controls;
 using Playnite.SDK;
 using Playnite.SDK.Models;
@@ -89,67 +87,67 @@ namespace Statistics.Views
                 {
                     case 1:
                         s1.Tag = item.Id.ToString();
-                        s1.Content = item.Name;
+                        s1.Content = SourceName;
                         s1.Visibility = Visibility.Visible;
                         break;
                     case 2:
                         s2.Tag = item.Id.ToString();
-                        s2.Content = item.Name;
+                        s2.Content = SourceName;
                         s2.Visibility = Visibility.Visible;
                         break;
                     case 3:
                         s3.Tag = item.Id.ToString();
-                        s3.Content = item.Name;
+                        s3.Content = SourceName;
                         s3.Visibility = Visibility.Visible;
                         break;
                     case 4:
                         s4.Tag = item.Id.ToString();
-                        s4.Content = item.Name;
+                        s4.Content = SourceName;
                         s4.Visibility = Visibility.Visible;
                         break;
                     case 5:
                         s5.Tag = item.Id.ToString();
-                        s5.Content = item.Name;
+                        s5.Content = SourceName;
                         s5.Visibility = Visibility.Visible;
                         break;
                     case 6:
                         s6.Tag = item.Id.ToString();
-                        s6.Content = item.Name;
+                        s6.Content = SourceName;
                         s6.Visibility = Visibility.Visible;
                         break;
                     case 7:
                         s7.Tag = item.Id.ToString();
-                        s7.Content = item.Name;
+                        s7.Content = SourceName;
                         s7.Visibility = Visibility.Visible;
                         break;
                     case 8:
                         s8.Tag = item.Id.ToString();
-                        s8.Content = item.Name;
+                        s8.Content = SourceName;
                         s8.Visibility = Visibility.Visible;
                         break;
                     case 9:
                         s9.Tag = item.Id.ToString();
-                        s9.Content = item.Name;
+                        s9.Content = SourceName;
                         s9.Visibility = Visibility.Visible;
                         break;
                     case 10:
                         s10.Tag = item.Id.ToString();
-                        s10.Content = item.Name;
+                        s10.Content = SourceName;
                         s10.Visibility = Visibility.Visible;
                         break;
                     case 11:
                         s11.Tag = item.Id.ToString();
-                        s11.Content = item.Name;
+                        s11.Content = SourceName;
                         s11.Visibility = Visibility.Visible;
                         break;
                     case 12:
                         s12.Tag = item.Id.ToString();
-                        s12.Content = item.Name;
+                        s12.Content = SourceName;
                         s12.Visibility = Visibility.Visible;
                         break;
                     case 13:
                         s13.Tag = item.Id.ToString();
-                        s13.Content = item.Name;
+                        s13.Content = SourceName;
                         s13.Visibility = Visibility.Visible;
                         break;
                 }
