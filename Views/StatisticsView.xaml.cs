@@ -1,6 +1,7 @@
 ﻿using LiveCharts;
 using LiveCharts.Configurations;
 using LiveCharts.Wpf;
+using LiveCharts.Wpf.Points;
 using Newtonsoft.Json;
 using Playnite.Controls;
 using Playnite.SDK;
@@ -13,7 +14,9 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Media;
 
 namespace Statistics.Views
 {
@@ -27,6 +30,8 @@ namespace Statistics.Views
 
         private ToggleButton _lastToggleButton = null;
         private bool desactiveToogleCheck = false;
+
+        private string SelectedGenre = "";
 
         public StatisticsView(StatisticsSettings settings, IGameDatabaseAPI PlayniteApiDatabase, string PluginUserDataPath)
         {
@@ -334,8 +339,6 @@ namespace Statistics.Views
                                 counter += 1;
                             }
                         }
-
-                        logger.Debug(JsonConvert.SerializeObject(temp));
                     }
                 }
                 else
@@ -477,6 +480,51 @@ namespace Statistics.Views
 
             SetData("null");
         }
+
+        #region Tooltip selection
+        private void StatsGraphicGenres_DataHover(object sender, ChartPoint chartPoint)
+        {
+            SelectedGenre = chartPoint.SeriesView.Title;
+            SelectedToolTip();
+        }
+
+        private void CustomerToolTipForMultipleSingle_Loaded(object sender, RoutedEventArgs e)
+        {
+            SelectedToolTip();
+        }
+
+        private void SelectedToolTip()
+        {
+            ScrollViewer scrollViewer = new ScrollViewer();
+            foreach (ScrollViewer sp in Tools.FindVisualChildren<ScrollViewer>(StatsGraphicGenres.DataTooltip))
+            {
+                scrollViewer = sp;
+            }
+
+            int counter = 0;
+            foreach (Grid sp in Tools.FindVisualChildren<Grid>(StatsGraphicGenres.DataTooltip))
+            {
+                if (SelectedGenre == (string)sp.Tag)
+                {
+                    sp.Background = Brushes.CadetBlue;
+                    if (counter > 10)
+                    {
+                        scrollViewer.ScrollToVerticalOffset(counter * 15);
+                    }
+                    else
+                    {
+                        scrollViewer.ScrollToVerticalOffset(0);
+                    }
+                }
+                else
+                {
+                    sp.Background = Brushes.Transparent;
+                }
+
+                counter += 1;
+            }
+        }
+        #endregion
     }
 }
 
@@ -485,4 +533,3 @@ public class dataTemp
     public string Name { get; set; }
     public long Count { get; set; }
 }
-

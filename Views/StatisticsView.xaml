@@ -179,9 +179,9 @@
                     </StackPanel>
 
                     <StackPanel DockPanel.Dock="Bottom" Margin="10,0,10,10">
-                        <lvc:PieChart x:Name="StatsGraphicGenres" LegendLocation="none" Height="500">
+                        <lvc:PieChart x:Name="StatsGraphicGenres" LegendLocation="none" Height="500" DataHover="StatsGraphicGenres_DataHover">
                             <lvc:PieChart.DataTooltip>
-                                <localLVC:CustomerToolTipForMultipleSingle/>
+                                <localLVC:CustomerToolTipForMultipleSingle Loaded="CustomerToolTipForMultipleSingle_Loaded" />
                             </lvc:PieChart.DataTooltip>
 
                             <lvc:PieChart.Series>
