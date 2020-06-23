@@ -70,6 +70,8 @@ namespace Statistics.Views
             s13.Visibility = Visibility.Hidden;
 
 
+            int iCount = 1;
+
             // Playnite
             string SourceName = TransformIcon.Get("Playnite");
 
@@ -82,12 +84,14 @@ namespace Statistics.Views
                 SourceName = SourceName + " " + "Playnite";
             }
 
-            s1.Tag = "00000000-0000-0000-0000-000000000000";
-            s1.Content = SourceName;
-            s1.Visibility = Visibility.Visible;
+            if (StatisticsDatabase.HaveGame(Guid.Parse("00000000-0000-0000-0000-000000000000"))) {
+                s1.Tag = "00000000-0000-0000-0000-000000000000";
+                s1.Content = SourceName;
+                s1.Visibility = Visibility.Visible;
+                iCount += 1;
+            }
 
 
-            int iCount = 2;
             foreach (var item in PlayniteApiDatabase.Sources)
             {
                 SourceName = TransformIcon.Get(item.Name);
@@ -101,76 +105,79 @@ namespace Statistics.Views
                     SourceName = SourceName + " " + item.Name;
                 }
 
-                switch (iCount)
+                if (StatisticsDatabase.HaveGame(item.Id))
                 {
-                    case 1:
-                        s1.Tag = item.Id.ToString();
-                        s1.Content = SourceName;
-                        s1.Visibility = Visibility.Visible;
-                        break;
-                    case 2:
-                        s2.Tag = item.Id.ToString();
-                        s2.Content = SourceName;
-                        s2.Visibility = Visibility.Visible;
-                        break;
-                    case 3:
-                        s3.Tag = item.Id.ToString();
-                        s3.Content = SourceName;
-                        s3.Visibility = Visibility.Visible;
-                        break;
-                    case 4:
-                        s4.Tag = item.Id.ToString();
-                        s4.Content = SourceName;
-                        s4.Visibility = Visibility.Visible;
-                        break;
-                    case 5:
-                        s5.Tag = item.Id.ToString();
-                        s5.Content = SourceName;
-                        s5.Visibility = Visibility.Visible;
-                        break;
-                    case 6:
-                        s6.Tag = item.Id.ToString();
-                        s6.Content = SourceName;
-                        s6.Visibility = Visibility.Visible;
-                        break;
-                    case 7:
-                        s7.Tag = item.Id.ToString();
-                        s7.Content = SourceName;
-                        s7.Visibility = Visibility.Visible;
-                        break;
-                    case 8:
-                        s8.Tag = item.Id.ToString();
-                        s8.Content = SourceName;
-                        s8.Visibility = Visibility.Visible;
-                        break;
-                    case 9:
-                        s9.Tag = item.Id.ToString();
-                        s9.Content = SourceName;
-                        s9.Visibility = Visibility.Visible;
-                        break;
-                    case 10:
-                        s10.Tag = item.Id.ToString();
-                        s10.Content = SourceName;
-                        s10.Visibility = Visibility.Visible;
-                        break;
-                    case 11:
-                        s11.Tag = item.Id.ToString();
-                        s11.Content = SourceName;
-                        s11.Visibility = Visibility.Visible;
-                        break;
-                    case 12:
-                        s12.Tag = item.Id.ToString();
-                        s12.Content = SourceName;
-                        s12.Visibility = Visibility.Visible;
-                        break;
-                    case 13:
-                        s13.Tag = item.Id.ToString();
-                        s13.Content = SourceName;
-                        s13.Visibility = Visibility.Visible;
-                        break;
-                }
+                    switch (iCount)
+                    {
+                        case 1:
+                            s1.Tag = item.Id.ToString();
+                            s1.Content = SourceName;
+                            s1.Visibility = Visibility.Visible;
+                            break;
+                        case 2:
+                            s2.Tag = item.Id.ToString();
+                            s2.Content = SourceName;
+                            s2.Visibility = Visibility.Visible;
+                            break;
+                        case 3:
+                            s3.Tag = item.Id.ToString();
+                            s3.Content = SourceName;
+                            s3.Visibility = Visibility.Visible;
+                            break;
+                        case 4:
+                            s4.Tag = item.Id.ToString();
+                            s4.Content = SourceName;
+                            s4.Visibility = Visibility.Visible;
+                            break;
+                        case 5:
+                            s5.Tag = item.Id.ToString();
+                            s5.Content = SourceName;
+                            s5.Visibility = Visibility.Visible;
+                            break;
+                        case 6:
+                            s6.Tag = item.Id.ToString();
+                            s6.Content = SourceName;
+                            s6.Visibility = Visibility.Visible;
+                            break;
+                        case 7:
+                            s7.Tag = item.Id.ToString();
+                            s7.Content = SourceName;
+                            s7.Visibility = Visibility.Visible;
+                            break;
+                        case 8:
+                            s8.Tag = item.Id.ToString();
+                            s8.Content = SourceName;
+                            s8.Visibility = Visibility.Visible;
+                            break;
+                        case 9:
+                            s9.Tag = item.Id.ToString();
+                            s9.Content = SourceName;
+                            s9.Visibility = Visibility.Visible;
+                            break;
+                        case 10:
+                            s10.Tag = item.Id.ToString();
+                            s10.Content = SourceName;
+                            s10.Visibility = Visibility.Visible;
+                            break;
+                        case 11:
+                            s11.Tag = item.Id.ToString();
+                            s11.Content = SourceName;
+                            s11.Visibility = Visibility.Visible;
+                            break;
+                        case 12:
+                            s12.Tag = item.Id.ToString();
+                            s12.Content = SourceName;
+                            s12.Visibility = Visibility.Visible;
+                            break;
+                        case 13:
+                            s13.Tag = item.Id.ToString();
+                            s13.Content = SourceName;
+                            s13.Visibility = Visibility.Visible;
+                            break;
+                    }
 
-                iCount += 1;
+                    iCount += 1;
+                }
             }
 
             s0.IsChecked = true;

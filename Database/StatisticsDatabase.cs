@@ -15,9 +15,12 @@ namespace Statistics.Database
         public StatisticsClass Statistics { get; set; }
         public ConcurrentDictionary<Guid, StatisticsClass> StatisticsSourceDatabase { get; set; }
 
+        public IGameDatabaseAPI PlayniteApiDatabase;
 
         public void Initialize(IGameDatabaseAPI PlayniteApiDatabase, StatisticsSettings settings)
         {
+            this.PlayniteApiDatabase = PlayniteApiDatabase;
+
             Statistics = new StatisticsClass
             {
                 Name = "All",
@@ -249,6 +252,20 @@ namespace Statistics.Database
                 StatisticsSourceDatabase[(Guid)SourceId].Playtime = Playtime;
                 StatisticsSourceDatabase[(Guid)SourceId].Total += 1;
             }
+        }
+
+
+        public bool HaveGame(Guid SourceId)
+        {
+            foreach(Game game in PlayniteApiDatabase.Games)
+            {
+                if (SourceId == game.SourceId)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
