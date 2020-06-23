@@ -69,10 +69,28 @@ namespace Statistics.Views
             s12.Visibility = Visibility.Hidden;
             s13.Visibility = Visibility.Hidden;
 
-            int iCount = 1;
+
+            // Playnite
+            string SourceName = TransformIcon.Get("Playnite");
+
+            if (SourceName.Length != 1)
+            {
+                SourceName = "Playnite";
+            }
+            else
+            {
+                SourceName = SourceName + " " + "Playnite";
+            }
+
+            s1.Tag = "00000000-0000-0000-0000-000000000000";
+            s1.Content = SourceName;
+            s1.Visibility = Visibility.Visible;
+
+
+            int iCount = 2;
             foreach (var item in PlayniteApiDatabase.Sources)
             {
-                string SourceName = TransformIcon.Get(item.Name);
+                SourceName = TransformIcon.Get(item.Name);
 
                 if (SourceName.Length != 1)
                 {
