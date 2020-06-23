@@ -12,6 +12,8 @@ namespace Statistics
         public bool IncludeHiddenGames { get; set; } = false;
         public bool PreferTopGames { get; set; } = true;
 
+        public bool EnableIntegrationButton { get; set; } = false;
+
         // Playnite serializes settings object to a JSON object and saves it as text file.
         // If you want to exclude some property from being saved then use `JsonIgnore` ignore attribute.
         [JsonIgnore]
@@ -35,6 +37,8 @@ namespace Statistics
             {
                 IncludeHiddenGames = savedSettings.IncludeHiddenGames;
                 PreferTopGames = savedSettings.PreferTopGames;
+
+                EnableIntegrationButton = savedSettings.EnableIntegrationButton;
             }
         }
 

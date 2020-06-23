@@ -38,5 +38,8 @@
 
     <sys:String x:Key="LOCStatisticsEnableIncludeHiddenGames">Include hidden games</sys:String>
     <sys:String x:Key="LOCStatisticsPreferTopGames">Prefer "Top games" when "All sources"</sys:String>
+
+    <sys:String x:Key="LOCStatisticsIntegration">Interface integration (experimental)</sys:String>
+    <sys:String x:Key="LOCStatisticsIntegrationButton">Add button</sys:String>
     
 </ResourceDictionary>

@@ -1,11 +1,14 @@
 ﻿using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
+using PluginCommon;
 using Statistics.Views;
+using Statistics.Views.Interface;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Statistics
@@ -75,7 +78,46 @@ namespace Statistics
         public override void OnApplicationStarted()
         {
             // Add code to be executed when Playnite is initialized.
+
+            if (settings.EnableIntegrationButton)
+            {
+                foreach (Button bt in Tools.FindVisualChildren<Button>(Application.Current.MainWindow))
+                {
+                    if (bt.Name == "PART_ButtonSteamFriends")
+                    {
+                        logger.Debug("Statistics - PART_ButtonSteamFriends find");
+
+                        Button sBt = new StatisticsButton(TransformIcon.Get("statistics"));
+                        sBt.Click += sBt_ClickEvent;
+                        sBt.Width = bt.ActualWidth;
+                        DockPanel.SetDock(sBt, Dock.Right);
+
+                        DockPanel ControlParent = ((DockPanel)bt.Parent);
+                        for (int i = 0; i < ControlParent.Children.Count; i++)
+                        {
+                            if (((FrameworkElement)ControlParent.Children[i]).Name == "PART_ButtonSteamFriends")
+                            {
+                                logger.Debug("Statistics - sBt add");
+                                ControlParent.Children.Insert((i - 1), sBt);
+                                i = 200;
+                            }
+                        }
+
+                        break;
+                    }
+                    else
+                    {
+                        logger.Debug("Statistics - PART_ButtonSteamFriends not find");
+                    }
+                }
+            }
         }
+
+        private void sBt_ClickEvent(object sender, RoutedEventArgs e)
+        {
+            new StatisticsView(settings, PlayniteApi.Database, this.GetPluginUserDataPath()).ShowDialog();
+        }
+
 
         public override void OnApplicationStopped()
         {

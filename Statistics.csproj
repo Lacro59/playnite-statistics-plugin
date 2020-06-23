@@ -77,6 +77,9 @@
     <Compile Include="Models\StatisticsClass.cs" />
     <Compile Include="Statistics.cs" />
     <Compile Include="StatisticsSettings.cs" />
+    <Compile Include="Views\Interface\StatisticsButton.xaml.cs">
+      <DependentUpon>StatisticsButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\StatisticsSettingsView.xaml.cs">
       <DependentUpon>StatisticsSettingsView.xaml</DependentUpon>
     </Compile>
@@ -264,6 +267,10 @@
     <Page Include="Resources\PlayniteResources\LocSource.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Interface\StatisticsButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\StatisticsSettingsView.xaml">
       <SubType>Designer</SubType>
