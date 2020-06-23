@@ -40,6 +40,6 @@
     <sys:String x:Key="LOCStatisticsPreferTopGames">Préférences pour "Top jeux" quand "Toutes les sources"</sys:String>
 
     <sys:String x:Key="LOCStatisticsIntegration">Intégration dans l'interface (expérimental)</sys:String>
-    <sys:String x:Key="LOCStatisticsIntegrationButton">Ajouter un bouton</sys:String>
+    <sys:String x:Key="LOCStatisticsIntegrationButton">Ajouter un bouton dans la fenêtre</sys:String>
     
 </ResourceDictionary>
