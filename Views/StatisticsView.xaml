@@ -14,7 +14,7 @@
 
     <DockPanel>
         <!--Select data-->
-        <StackPanel DockPanel.Dock="Top" Height="125" Margin="10,10,5,5">
+        <StackPanel DockPanel.Dock="Top" Height="125" Margin="10,10,10,5">
             <Border BorderThickness="{DynamicResource PopupBorderThickness}" BorderBrush="{DynamicResource NormalBorderBrush}" Height="125">
                 <Grid Margin="10,10,10,0">
                     <Label Content="{DynamicResource LOCStatisticsDataChoice}" VerticalAlignment="Top" Height="20" FontSize="16" FontWeight="Bold"></Label>
