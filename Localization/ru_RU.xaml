@@ -6,40 +6,40 @@
     StatisticsyView 
     -->
 
-    <sys:String x:Key="LOCStatisticsSwitchDataGames">Лучшие игры</sys:String>
-    <sys:String x:Key="LOCStatisticsSwitchDataSources">Top sources</sys:String>
+    <sys:String x:Key="LOCStatisticsSwitchDataGames">Игры</sys:String>
+    <sys:String x:Key="LOCStatisticsSwitchDataSources">Источники</sys:String>
     
-    <sys:String x:Key="LOCStatisticsDataChoice">Выбор данных</sys:String>
-    <sys:String x:Key="LOCStatisticsDataChoiceAll">Все данные</sys:String>
+    <sys:String x:Key="LOCStatisticsDataChoice">Выбор источника</sys:String>
+    <sys:String x:Key="LOCStatisticsDataChoiceAll">Все источники</sys:String>
 
     <sys:String x:Key="LOCStatisticsDataTitle">Информация</sys:String>
     <sys:String x:Key="LOCStatisticsDataTotalAll">Всего игр</sys:String>
     <sys:String x:Key="LOCStatisticsDataTotalInstalled">Установлены</sys:String>
     <sys:String x:Key="LOCStatisticsDataTotalNotLaunching">Не установлены</sys:String>
-    <sys:String x:Key="LOCStatisticsDataTotalFavorite">Избраннык</sys:String>
+    <sys:String x:Key="LOCStatisticsDataTotalFavorite">Избранные</sys:String>
     <sys:String x:Key="LOCStatisticsDataTotalPlaytime">Общее игровое время</sys:String>
 
     <sys:String x:Key="LOCStatisticCompletionStatusNotPlayed">Не играл</sys:String>
     <sys:String x:Key="LOCStatisticCompletionStatusPlayed">Играл</sys:String>
-    <sys:String x:Key="LOCStatisticCompletionStatusBeaten">Beaten</sys:String>
+    <sys:String x:Key="LOCStatisticCompletionStatusBeaten">Прохожу</sys:String>
     <sys:String x:Key="LOCStatisticCompletionStatusCompleted">Пройдены</sys:String>
     <sys:String x:Key="LOCStatisticCompletionStatusPlaying">Играете</sys:String>
     <sys:String x:Key="LOCStatisticCompletionStatusAbandoned">Заброшены</sys:String>
     <sys:String x:Key="LOCStatisticCompletionStatusOnHold">В заморозке</sys:String>
     <sys:String x:Key="LOCStatisticCompletionStatusPlanToPlay">В планах</sys:String>
-    <sys:String x:Key="LOCStatisticCompletionStatus">Конечный статус</sys:String>
+    <sys:String x:Key="LOCStatisticCompletionStatus">Общий статус</sys:String>
 
-    <sys:String x:Key="LOCStatisticsGraphicsTitlePlayTime">Обее игровое время</sys:String>
+    <sys:String x:Key="LOCStatisticsGraphicsTitlePlayTime">Обеще игровое время</sys:String>
     <sys:String x:Key="LOCStatisticsGraphicsTitleGenre">Всего по жанрам</sys:String>
 
     <!-- 
     StatisticsyViewSettings
     -->
 
-    <sys:String x:Key="LOCStatisticsEnableIncludeHiddenGames">Include hidden games</sys:String>
-    <sys:String x:Key="LOCStatisticsPreferTopGames">Prefer "Top games" when "All sources"</sys:String>
+    <sys:String x:Key="LOCStatisticsEnableIncludeHiddenGames">Включая скрытые игры</sys:String>
+    <sys:String x:Key="LOCStatisticsPreferTopGames">Предпочитать "Игры" когда "Источники"</sys:String>
 
-    <sys:String x:Key="LOCStatisticsIntegration">Interface integration (experimental)</sys:String>
-    <sys:String x:Key="LOCStatisticsIntegrationButton">Add button in window</sys:String>
+    <sys:String x:Key="LOCStatisticsIntegration">Интеграция интерфейса (экспериментальная)</sys:String>
+    <sys:String x:Key="LOCStatisticsIntegrationButton">Добавить кнопку в окне</sys:String>
     
 </ResourceDictionary>
