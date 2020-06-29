@@ -40,6 +40,6 @@
     <sys:String x:Key="LOCStatisticsPreferTopGames">Предпочитать "Игры" когда "Источники"</sys:String>
 
     <sys:String x:Key="LOCStatisticsIntegration">Интеграция интерфейса (экспериментальная)</sys:String>
-    <sys:String x:Key="LOCStatisticsIntegrationButton">Добавить кнопку в окне</sys:String>
+    <sys:String x:Key="LOCStatisticsIntegrationButtonHeader">Добавить кнопку в окне</sys:String>
     
 </ResourceDictionary>
