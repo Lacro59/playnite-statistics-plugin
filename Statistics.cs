@@ -11,15 +11,17 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 
+
 namespace Statistics
 {
     public class Statistics : Plugin
     {
         private static readonly ILogger logger = LogManager.GetLogger();
-
         private StatisticsSettings settings { get; set; }
-
         public override Guid Id { get; } = Guid.Parse("6828cad4-fc82-4828-b02d-4085b1e20327");
+
+        private readonly IntegrationUI ui = new IntegrationUI();
+
 
         public Statistics(IPlayniteAPI api) : base(api)
         {
@@ -79,45 +81,23 @@ namespace Statistics
         {
             // Add code to be executed when Playnite is initialized.
 
-            if (settings.EnableIntegrationButton)
+            if (settings.EnableIntegrationButtonHeader)
             {
-                foreach (Button bt in Tools.FindVisualChildren<Button>(Application.Current.MainWindow))
-                {
-                    if (bt.Name == "PART_ButtonSteamFriends")
-                    {
-                        logger.Debug("Statistics - PART_ButtonSteamFriends find");
-
-                        Button sBt = new StatisticsButton(TransformIcon.Get("statistics"));
-                        sBt.Click += sBt_ClickEvent;
-                        sBt.Width = bt.ActualWidth;
-                        DockPanel.SetDock(sBt, Dock.Right);
-
-                        DockPanel ControlParent = ((DockPanel)bt.Parent);
-                        for (int i = 0; i < ControlParent.Children.Count; i++)
-                        {
-                            if (((FrameworkElement)ControlParent.Children[i]).Name == "PART_ButtonSteamFriends")
-                            {
-                                logger.Debug("Statistics - sBt add");
-                                ControlParent.Children.Insert((i - 1), sBt);
-                                i = 200;
-                            }
-                        }
-
-                        break;
-                    }
-                    else
-                    {
-                        logger.Debug("Statistics - PART_ButtonSteamFriends not find");
-                    }
-                }
+                Button btHeader = new StatisticsButtonHeader(TransformIcon.Get("Statistics"));
+                btHeader.Click += OnBtHeaderClick;
+                ui.AddButtonInWindowsHeader(btHeader);
             }
         }
 
-        private void sBt_ClickEvent(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Event for the header button for show plugin view.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnBtHeaderClick(object sender, RoutedEventArgs e)
         {
             new StatisticsView(settings, PlayniteApi.Database, this.GetPluginUserDataPath()).ShowDialog();
         }
-
 
         public override void OnApplicationStopped()
         {

@@ -6,13 +6,13 @@ namespace Statistics.Views.Interface
     /// <summary>
     /// Logique d'interaction pour StatisticsButton.xaml
     /// </summary>
-    public partial class StatisticsButton : Button
+    public partial class StatisticsButtonHeader : Button
     {
-        public StatisticsButton(string Content)
+        public StatisticsButtonHeader(string Content)
         {
             InitializeComponent();
 
-            sBtName.Text = Content;
+            btHeaderName.Text = Content;
         }
     }
 }

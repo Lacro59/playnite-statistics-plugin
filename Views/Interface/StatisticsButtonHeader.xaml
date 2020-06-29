@@ -1,4 +1,4 @@
-﻿<Button x:Class="Statistics.Views.Interface.StatisticsButton"
+﻿<Button x:Class="Statistics.Views.Interface.StatisticsButtonHeader"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -41,22 +41,18 @@
             </Style.Triggers>
         </Style>
     </Button.Style>
-    
-    <TextBlock Name="sBtName" Text="S" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="/Statistics;component/Resources/#font">
+
+    <TextBlock Name="btHeaderName" Text="S" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="/Statistics;component/Resources/#font">
         <TextBlock.Style>
             <Style TargetType="TextBlock">
                 <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=IsMouseOver}" Value="True">
-                            <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBlock.Style>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=IsMouseOver}" Value="True">
+                        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </TextBlock.Style>
     </TextBlock>
     
-    <!--Button  DockPanel.Dock="Right" WindowChrome.IsHitTestVisibleInChrome="True">
-        <TextBlock Text="&#xecf9;" FontSize="24"
-                                           VerticalAlignment="Center" HorizontalAlignment="Center"/>
-    </-->
 </Button>
