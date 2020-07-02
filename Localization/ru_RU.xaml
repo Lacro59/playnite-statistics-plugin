@@ -29,7 +29,7 @@
     <sys:String x:Key="LOCStatisticCompletionStatusPlanToPlay">В планах</sys:String>
     <sys:String x:Key="LOCStatisticCompletionStatus">Общий статус</sys:String>
 
-    <sys:String x:Key="LOCStatisticsGraphicsTitlePlayTime">Обеще игровое время</sys:String>
+    <sys:String x:Key="LOCStatisticsGraphicsTitlePlayTime">Общее игровое время</sys:String>
     <sys:String x:Key="LOCStatisticsGraphicsTitleGenre">Всего по жанрам</sys:String>
 
     <!-- 
