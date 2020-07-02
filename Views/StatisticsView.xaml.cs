@@ -2,6 +2,7 @@
 using LiveCharts.Configurations;
 using LiveCharts.Wpf;
 using Playnite.Controls;
+using Playnite.Converters;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using PluginCommon;
@@ -11,6 +12,7 @@ using Statistics.Models;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -269,8 +271,9 @@ namespace Statistics.Views
                 TotalInstalled = stats.GameIsInstalled.Count;
                 TotalNotLaunching = stats.GameIsNotLaunching.Count;
                 TotalFavorite = stats.GameFavorite.Count;
-                TotalPlaytime = (int)TimeSpan.FromSeconds(stats.Playtime).TotalHours + "h "
-                    + TimeSpan.FromSeconds(stats.Playtime).ToString(@"mm") + "min";
+
+                LongToTimePlayedConverter converter = new LongToTimePlayedConverter();
+                TotalPlaytime = (string)converter.Convert(stats.Playtime, null, null, CultureInfo.CurrentCulture);
 
                 // Game completation
                 List<Counter> GameCompletionStatus = stats.GameCompletionStatus;
