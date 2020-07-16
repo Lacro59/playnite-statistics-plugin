@@ -17,6 +17,7 @@ namespace Statistics
     public class Statistics : Plugin
     {
         private static readonly ILogger logger = LogManager.GetLogger();
+        private static IResourceProvider resources = new ResourceProvider();
         private StatisticsSettings settings { get; set; }
         public override Guid Id { get; } = Guid.Parse("6828cad4-fc82-4828-b02d-4085b1e20327");
 
@@ -41,7 +42,7 @@ namespace Statistics
             return new List<ExtensionFunction>
             {
                 new ExtensionFunction(
-                    "Statistics",
+                    resources.GetString("LOCStatistics"),
                     () =>
                     {
                         // Add code to be execute when user invokes this menu entry.

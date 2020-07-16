@@ -3,6 +3,12 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <!-- 
+    MainView 
+    -->
+
+    <sys:String x:Key="LOCStatistics">Статистика</sys:String>
+
+    <!--  
     StatisticsyView 
     -->
 
