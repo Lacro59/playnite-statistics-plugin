@@ -12,6 +12,9 @@ namespace Statistics
         public bool IncludeHiddenGames { get; set; } = false;
         public bool PreferTopGames { get; set; } = true;
 
+        public int MaxGenres { get; set; } = 100;
+        public int MinGenreCount { get; set; } = 1;
+
         public bool EnableIntegrationButtonHeader { get; set; } = false;
 
         // Playnite serializes settings object to a JSON object and saves it as text file.
@@ -37,6 +40,9 @@ namespace Statistics
             {
                 IncludeHiddenGames = savedSettings.IncludeHiddenGames;
                 PreferTopGames = savedSettings.PreferTopGames;
+
+                MaxGenres = savedSettings.MaxGenres;
+                MinGenreCount = savedSettings.MinGenreCount;
 
                 EnableIntegrationButtonHeader = savedSettings.EnableIntegrationButtonHeader;
             }

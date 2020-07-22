@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" d:DesignHeight="400" d:DesignWidth="600">
     
     <DockPanel Margin="20">
@@ -14,6 +15,50 @@
             <CheckBox IsChecked="{Binding PreferTopGames}" Margin="0,10,0,0">
                 <Label Content="{DynamicResource LOCStatisticsPreferTopGames}"></Label>
             </CheckBox>
+
+            <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                <TextBlock Text="{DynamicResource LOCStatisticsMaxGenres}" VerticalAlignment="Center"/>
+                <ComboBox SelectedValue="{Binding MaxGenres}"
+                                                                                                                                  Margin="5,0,0,0">
+                    <ComboBox.ItemsSource>
+                        <x:Array Type="{x:Type system:Int32}">
+                            <system:Int32>10</system:Int32>
+                            <system:Int32>20</system:Int32>
+                            <system:Int32>30</system:Int32>
+                            <system:Int32>50</system:Int32>
+                            <system:Int32>100</system:Int32>
+                            <system:Int32>200</system:Int32>
+                        </x:Array>
+                    </ComboBox.ItemsSource>
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Converter={StaticResource ObjectToStringConverter}}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                <TextBlock Text="{DynamicResource LOCStatisticsMinGenreCount}" VerticalAlignment="Center"/>
+                <ComboBox SelectedValue="{Binding MinGenreCount}"
+                          Margin="5,0,0,0">
+                    <ComboBox.ItemsSource>
+                        <x:Array Type="{x:Type system:Int32}">
+                            <system:Int32>0</system:Int32>
+                            <system:Int32>1</system:Int32>
+                            <system:Int32>2</system:Int32>
+                            <system:Int32>3</system:Int32>
+                            <system:Int32>5</system:Int32>
+                            <system:Int32>10</system:Int32>
+                        </x:Array>
+                    </ComboBox.ItemsSource>
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Converter={StaticResource ObjectToStringConverter}}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
         </StackPanel>
 
         <StackPanel DockPanel.Dock="Bottom" Height="280" Margin="0,20,0,0">
