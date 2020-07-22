@@ -13,7 +13,7 @@ namespace Statistics
         public bool PreferTopGames { get; set; } = true;
 
         public int MaxGenres { get; set; } = 100;
-        public int MinGenreCount { get; set; } = 1;
+        public int MinGenreCount { get; set; } = 2;
 
         public bool EnableIntegrationButtonHeader { get; set; } = false;
 

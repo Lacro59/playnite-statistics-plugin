@@ -257,7 +257,7 @@ namespace Statistics.Views
 
             //reduce amount of genres
             stats.GameGenres = stats.GameGenres
-                .Where(x => x.Count > _settings.MinGenreCount)
+                .Where(x => x.Count >= _settings.MinGenreCount)
                 .OrderByDescending(x => x.Count)
                 .TakeMax(_settings.MaxGenres).ToList();
 

@@ -44,8 +44,6 @@
                           Margin="5,0,0,0">
                     <ComboBox.ItemsSource>
                         <x:Array Type="{x:Type system:Int32}">
-                            <system:Int32>0</system:Int32>
-                            <system:Int32>1</system:Int32>
                             <system:Int32>2</system:Int32>
                             <system:Int32>3</system:Int32>
                             <system:Int32>5</system:Int32>
