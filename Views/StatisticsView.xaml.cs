@@ -13,6 +13,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -20,6 +21,15 @@ using System.Windows.Media;
 
 namespace Statistics.Views
 {
+    public static class EnumerableExtensions
+    {
+        public static IEnumerable<T> TakeMax<T>(this IEnumerable<T> col, int max)
+        {
+            var count = 0;
+            return col.TakeWhile(x => count++ < max);
+        }
+    }
+
     /// <summary>
     /// Logique d'interaction pour StatisticsView.xaml
     /// </summary>
@@ -27,6 +37,7 @@ namespace Statistics.Views
     {
         private static readonly ILogger logger = LogManager.GetLogger();
         private static StatisticsDatabase StatisticsDatabase = new StatisticsDatabase();
+        private readonly StatisticsSettings _settings;
 
         private ToggleButton _lastToggleButton = null;
         private bool desactiveToogleCheck = false;
@@ -38,6 +49,8 @@ namespace Statistics.Views
             StatisticsDatabase.Initialize(PlayniteApiDatabase, settings);
 
             InitializeComponent();
+
+            _settings = settings;
 
             if (!settings.PreferTopGames)
             {
@@ -242,6 +255,11 @@ namespace Statistics.Views
                 SwitchDataSources.Visibility = Visibility.Hidden;
             }
 
+            //reduce amount of genres
+            stats.GameGenres = stats.GameGenres
+                .Where(x => x.Count >= _settings.MinGenreCount)
+                .OrderByDescending(x => x.Count)
+                .TakeMax(_settings.MaxGenres).ToList();
 
             long Total = 0;
             long TotalInstalled = 0;
@@ -318,7 +336,7 @@ namespace Statistics.Views
                     {
                         foreach (var item in StatisticsSourceDatabase)
                         {
-                            temp.Add(new dataTemp() { Name = item.Value.Name, Count = item.Value.Playtime });
+                            temp.Add(new dataTemp { Name = item.Value.Name, Count = item.Value.Playtime });
                         }
                         temp.Sort((a, b) => a.Count.CompareTo(b.Count));
 
@@ -339,7 +357,7 @@ namespace Statistics.Views
                         {
                             foreach (var item in itemAll.Value.GameSource)
                             {
-                                temp.Add(new dataTemp() { Name = item.Name, Count = item.Count });
+                                temp.Add(new dataTemp { Name = item.Name, Count = item.Count });
                             }
                         }
 
@@ -374,7 +392,7 @@ namespace Statistics.Views
                     temp = new List<dataTemp>();
                     foreach (var item in StatisticsSourceDatabase)
                     {
-                        temp.Add(new dataTemp() { Name = item.Name, Count = item.Count });
+                        temp.Add(new dataTemp { Name = item.Name, Count = item.Count });
                     }
 
                     temp.Sort((a, b) => b.Count.CompareTo(a.Count));
@@ -410,7 +428,7 @@ namespace Statistics.Views
                 temp = new List<dataTemp>();
                 foreach (var item in stats.GameGenres)
                 {
-                    temp.Add(new dataTemp() { Name = item.Name, Count = item.Count });
+                    temp.Add(new dataTemp { Name = item.Name, Count = item.Count });
                 }
                 temp.Sort((a, b) => b.Count.CompareTo(a.Count));
 
@@ -423,10 +441,6 @@ namespace Statistics.Views
                         DataLabels = true
                     });
                 }
-            }
-            else
-            {
-
             }
 
 
