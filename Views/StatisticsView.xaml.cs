@@ -99,7 +99,8 @@ namespace Statistics.Views
                 SourceName = SourceName + " " + "Playnite";
             }
 
-            if (StatisticsDatabase.HaveGame(Guid.Parse("00000000-0000-0000-0000-000000000000"))) {
+            if (StatisticsDatabase.HaveGame(Guid.Parse("00000000-0000-0000-0000-000000000000")))
+            {
                 s1.Tag = "00000000-0000-0000-0000-000000000000";
                 s1.Content = SourceName;
                 s1.Visibility = Visibility.Visible;
@@ -107,95 +108,148 @@ namespace Statistics.Views
             }
 
 
+            #region Set list sources
+            // Set emulators sources (cbEmulators)
+            List<dataEmulators> ListEmulators = new List<dataEmulators>();
+            foreach (var item in PlayniteApiDatabase.Emulators)
+            {
+                ListEmulators.Add(new dataEmulators { Id = item.Id, Name = item.Name });
+            }
+            cbEmulators.ItemsSource = ListEmulators;
+            if (ListEmulators.Count == 0)
+            {
+                spEmulators.Visibility = Visibility.Hidden;
+            }
+            // Get link source for emulator
+            else
+            {
+                foreach (var game in PlayniteApiDatabase.Games)
+                {
+                    if (game.PlayAction != null && game.PlayAction.EmulatorId != null)
+                    {
+                        for (int i = 0; i < ListEmulators.Count; i++)
+                        {
+                            if (ListEmulators[i].Id == game.PlayAction.EmulatorId)
+                            {
+                                ListEmulators[i].SourceId = game.SourceId;
+                                if (game.SourceId == Guid.Parse("00000000-0000-0000-0000-000000000000"))
+                                {
+                                    ListEmulators[i].SourceName = "";
+                                }
+                                else
+                                {
+                                    ListEmulators[i].SourceName = game.Source.Name;
+                                }
+                                i = ListEmulators.Count;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Set pc sources
             foreach (var item in PlayniteApiDatabase.Sources)
             {
-                SourceName = TransformIcon.Get(item.Name);
-
-                if (SourceName.Length != 1)
+                bool IsEmulators = false;
+                for (int i = 0; i < ListEmulators.Count; i++)
                 {
-                    SourceName = item.Name;
-                }
-                else
-                {
-                    SourceName = SourceName + " " + item.Name;
-                }
-
-                if (StatisticsDatabase.HaveGame(item.Id))
-                {
-                    switch (iCount)
+                    if (ListEmulators[i].SourceId == item.Id)
                     {
-                        case 1:
-                            s1.Tag = item.Id.ToString();
-                            s1.Content = SourceName;
-                            s1.Visibility = Visibility.Visible;
-                            break;
-                        case 2:
-                            s2.Tag = item.Id.ToString();
-                            s2.Content = SourceName;
-                            s2.Visibility = Visibility.Visible;
-                            break;
-                        case 3:
-                            s3.Tag = item.Id.ToString();
-                            s3.Content = SourceName;
-                            s3.Visibility = Visibility.Visible;
-                            break;
-                        case 4:
-                            s4.Tag = item.Id.ToString();
-                            s4.Content = SourceName;
-                            s4.Visibility = Visibility.Visible;
-                            break;
-                        case 5:
-                            s5.Tag = item.Id.ToString();
-                            s5.Content = SourceName;
-                            s5.Visibility = Visibility.Visible;
-                            break;
-                        case 6:
-                            s6.Tag = item.Id.ToString();
-                            s6.Content = SourceName;
-                            s6.Visibility = Visibility.Visible;
-                            break;
-                        case 7:
-                            s7.Tag = item.Id.ToString();
-                            s7.Content = SourceName;
-                            s7.Visibility = Visibility.Visible;
-                            break;
-                        case 8:
-                            s8.Tag = item.Id.ToString();
-                            s8.Content = SourceName;
-                            s8.Visibility = Visibility.Visible;
-                            break;
-                        case 9:
-                            s9.Tag = item.Id.ToString();
-                            s9.Content = SourceName;
-                            s9.Visibility = Visibility.Visible;
-                            break;
-                        case 10:
-                            s10.Tag = item.Id.ToString();
-                            s10.Content = SourceName;
-                            s10.Visibility = Visibility.Visible;
-                            break;
-                        case 11:
-                            s11.Tag = item.Id.ToString();
-                            s11.Content = SourceName;
-                            s11.Visibility = Visibility.Visible;
-                            break;
-                        case 12:
-                            s12.Tag = item.Id.ToString();
-                            s12.Content = SourceName;
-                            s12.Visibility = Visibility.Visible;
-                            break;
-                        case 13:
-                            s13.Tag = item.Id.ToString();
-                            s13.Content = SourceName;
-                            s13.Visibility = Visibility.Visible;
-                            break;
+                        IsEmulators = true;
+                    }
+                }
+
+                if (!IsEmulators) 
+                {
+                    SourceName = TransformIcon.Get(item.Name);
+
+                    if (SourceName.Length != 1)
+                    {
+                        SourceName = item.Name;
+                    }
+                    else
+                    {
+                        SourceName = SourceName + " " + item.Name;
                     }
 
-                    iCount += 1;
+                    if (StatisticsDatabase.HaveGame(item.Id))
+                    {
+                        switch (iCount)
+                        {
+                            case 1:
+                                s1.Tag = item.Id.ToString();
+                                s1.Content = SourceName;
+                                s1.Visibility = Visibility.Visible;
+                                break;
+                            case 2:
+                                s2.Tag = item.Id.ToString();
+                                s2.Content = SourceName;
+                                s2.Visibility = Visibility.Visible;
+                                break;
+                            case 3:
+                                s3.Tag = item.Id.ToString();
+                                s3.Content = SourceName;
+                                s3.Visibility = Visibility.Visible;
+                                break;
+                            case 4:
+                                s4.Tag = item.Id.ToString();
+                                s4.Content = SourceName;
+                                s4.Visibility = Visibility.Visible;
+                                break;
+                            case 5:
+                                s5.Tag = item.Id.ToString();
+                                s5.Content = SourceName;
+                                s5.Visibility = Visibility.Visible;
+                                break;
+                            case 6:
+                                s6.Tag = item.Id.ToString();
+                                s6.Content = SourceName;
+                                s6.Visibility = Visibility.Visible;
+                                break;
+                            case 7:
+                                s7.Tag = item.Id.ToString();
+                                s7.Content = SourceName;
+                                s7.Visibility = Visibility.Visible;
+                                break;
+                            case 8:
+                                s8.Tag = item.Id.ToString();
+                                s8.Content = SourceName;
+                                s8.Visibility = Visibility.Visible;
+                                break;
+                            case 9:
+                                s9.Tag = item.Id.ToString();
+                                s9.Content = SourceName;
+                                s9.Visibility = Visibility.Visible;
+                                break;
+                            case 10:
+                                s10.Tag = item.Id.ToString();
+                                s10.Content = SourceName;
+                                s10.Visibility = Visibility.Visible;
+                                break;
+                            case 11:
+                                s11.Tag = item.Id.ToString();
+                                s11.Content = SourceName;
+                                s11.Visibility = Visibility.Visible;
+                                break;
+                            case 12:
+                                s12.Tag = item.Id.ToString();
+                                s12.Content = SourceName;
+                                s12.Visibility = Visibility.Visible;
+                                break;
+                            case 13:
+                                s13.Tag = item.Id.ToString();
+                                s13.Content = SourceName;
+                                s13.Visibility = Visibility.Visible;
+                                break;
+                        }
+
+                        iCount += 1;
+                    }
                 }
             }
 
             s0.IsChecked = true;
+            #endregion  
         }
 
 
@@ -207,6 +261,7 @@ namespace Statistics.Views
         private void ToggleButton_Click(object sender, RoutedEventArgs e)
         {
             var toggleButton = sender as ToggleButton;
+            cbEmulators.Text = "";
 
             try
             {
@@ -255,7 +310,7 @@ namespace Statistics.Views
                 SwitchDataSources.Visibility = Visibility.Hidden;
             }
 
-            //reduce amount of genres
+            // Reduce amount of genres
             stats.GameGenres = stats.GameGenres
                 .Where(x => x.Count >= _settings.MinGenreCount)
                 .OrderByDescending(x => x.Count)
@@ -410,7 +465,8 @@ namespace Statistics.Views
                         {
                             SourcePlaytimeSeries.Add(new CustomerForTime
                             {
-                                Name = item.Name, Values = item.Count
+                                Name = item.Name,
+                                Values = item.Count
                             });
                             StatsGraphicsPlaytimeLabels[counter] = item.Name;
                             counter += 1;
@@ -565,6 +621,33 @@ namespace Statistics.Views
             }
         }
         #endregion
+
+        private void CbEmulators_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            s0.IsChecked = false;
+            s1.IsChecked = false;
+            s2.IsChecked = false;
+            s3.IsChecked = false;
+            s4.IsChecked = false;
+            s5.IsChecked = false;
+            s6.IsChecked = false;
+            s7.IsChecked = false;
+            s8.IsChecked = false;
+            s9.IsChecked = false;
+            s10.IsChecked = false;
+            s11.IsChecked = false;
+            s12.IsChecked = false;
+            s13.IsChecked = false;
+
+            try
+            {
+                SetData(((dataEmulators)cbEmulators.SelectedItem).Id.ToString());
+            }
+            catch
+            {
+
+            }
+        }
     }
 }
 
@@ -572,4 +655,28 @@ public class dataTemp
 {
     public string Name { get; set; }
     public long Count { get; set; }
+}
+
+public class dataEmulators
+{
+    public Guid Id { get; set; }
+    public Guid SourceId { get; set; }
+    public string Name { get; set; }
+    public string SourceName { get; set; }
+
+    public override string ToString()
+    {
+        return Name;
+    }
+    public string cbName
+    {
+        get
+        {
+            if (SourceName.IsNullOrEmpty())
+            {
+                return Name;
+            }
+            return SourceName;
+        }
+    }
 }

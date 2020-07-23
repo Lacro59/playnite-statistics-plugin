@@ -17,9 +17,17 @@ namespace Statistics.Database
 
         public IGameDatabaseAPI PlayniteApiDatabase;
 
+        private List<Guid> ListEmulators = new List<Guid>();
+
         public void Initialize(IGameDatabaseAPI PlayniteApiDatabase, StatisticsSettings settings)
         {
             this.PlayniteApiDatabase = PlayniteApiDatabase;
+
+            
+            foreach (var item in PlayniteApiDatabase.Emulators)
+            {
+                ListEmulators.Add(item.Id);
+            }
 
             Statistics = new StatisticsClass
             {
@@ -42,14 +50,28 @@ namespace Statistics.Database
                 if (!Game.Hidden)
                 {
                     Add(Game);
-                    Add(Game, Game.SourceId);
+
+                    if (Game.PlayAction != null && Game.PlayAction.EmulatorId != null && ListEmulators.Contains(Game.PlayAction.EmulatorId))
+                    {
+                        Add(Game, Game.PlayAction.EmulatorId);
+                    }
+                    else
+                    {
+                        Add(Game, Game.SourceId);
+                    }
                 }
                 else
                 {
                     if (settings.IncludeHiddenGames)
                     {
-                        Add(Game);
-                        Add(Game, Game.SourceId);
+                        if (Game.PlayAction != null && Game.PlayAction.EmulatorId != null && ListEmulators.Contains(Game.PlayAction.EmulatorId))
+                        {
+                            Add(Game, Game.PlayAction.EmulatorId);
+                        }
+                        else
+                        {
+                            Add(Game, Game.SourceId);
+                        }
                     }
                 }
             }
@@ -80,7 +102,6 @@ namespace Statistics.Database
             List<Counter> GameCompletionStatus = new List<Counter>();
 
             long Playtime = 0;
-
             bool IsFind = false;
 
             // Initialization variables
@@ -113,13 +134,20 @@ namespace Statistics.Database
                 else
                 {
                     string SourceName = "";
-                    if (SourceId == Guid.Parse("00000000-0000-0000-0000-000000000000"))
+                    if (ListEmulators.Contains((Guid)SourceId))
                     {
-                        SourceName = "Playnite";
+                        SourceName = PlayniteApiDatabase.Emulators.Get((Guid)SourceId).Name;
                     }
                     else
                     {
-                        SourceName = Game.Source.Name;
+                        if (SourceId == Guid.Parse("00000000-0000-0000-0000-000000000000"))
+                        {
+                            SourceName = "Playnite";
+                        }
+                        else
+                        {
+                            SourceName = Game.Source.Name;
+                        }
                     }
 
                     StatisticsClass StatisticsSource = new StatisticsClass
