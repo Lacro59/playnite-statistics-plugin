@@ -9,6 +9,8 @@ namespace Statistics
     {
         private readonly Statistics plugin;
 
+        public bool EnableCheckVersion { get; set; } = true;
+
         public bool IncludeHiddenGames { get; set; } = false;
         public bool PreferTopGames { get; set; } = true;
 
@@ -38,6 +40,8 @@ namespace Statistics
             // LoadPluginSettings returns null if not saved data is available.
             if (savedSettings != null)
             {
+                EnableCheckVersion = savedSettings.EnableCheckVersion;
+
                 IncludeHiddenGames = savedSettings.IncludeHiddenGames;
                 PreferTopGames = savedSettings.PreferTopGames;
 
