@@ -47,7 +47,7 @@
     <sys:String x:Key="LOCStatisticsMaxGenres">Максимальное количество Жанров для отображения на круглом графике.</sys:String>
     <sys:String x:Key="LOCStatisticsMinGenreCount">Мин Количество игр, которые должен иметь жанр, чтобы он появлялся на круглом графике.</sys:String>
 
-    <sys:String x:Key="LOCStatisticsIntegration">Интеграция интерфейса (экспериментальная)</sys:String>
+    <sys:String x:Key="LOCStatisticsIntegration">Интеграция интерфейса</sys:String>
     <sys:String x:Key="LOCStatisticsIntegrationButtonHeader">Добавить кнопку в окне</sys:String>
     
 </ResourceDictionary>

@@ -47,7 +47,7 @@
     <sys:String x:Key="LOCStatisticsMaxGenres">Quantité maximale de genres à afficher sur le graphique</sys:String>
     <sys:String x:Key="LOCStatisticsMinGenreCount">Nombre minimal qu'un jeu doit avoir pour être affiché</sys:String>
 
-    <sys:String x:Key="LOCStatisticsIntegration">Intégration dans l'interface (expérimental)</sys:String>
+    <sys:String x:Key="LOCStatisticsIntegration">Intégration dans l'interface</sys:String>
     <sys:String x:Key="LOCStatisticsIntegrationButtonHeader">Ajouter un bouton dans la fenêtre</sys:String>
     
 </ResourceDictionary>
