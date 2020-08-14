@@ -262,6 +262,7 @@ namespace Statistics.Views
         {
             var toggleButton = sender as ToggleButton;
             cbEmulators.Text = "";
+            cbEmulators.SelectedIndex = -1;
 
             try
             {
