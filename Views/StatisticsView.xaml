@@ -12,6 +12,10 @@
              mc:Ignorable="d" Height="740" Width="1260" Background="{DynamicResource WindowBackgourndBrush}"
              ResizeMode="NoResize" Title="Statistics" WindowStartupLocation="CenterScreen" WindowStyle="None">
 
+    <WindowBase.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </WindowBase.Resources>
+    
     <DockPanel>
         <!--Select data-->
         <StackPanel DockPanel.Dock="Top" Height="125" Margin="10,10,10,5">
@@ -187,11 +191,22 @@
                 <!--Genres-->
                 <DockPanel DockPanel.Dock="Right" Width="448">
                     <StackPanel DockPanel.Dock="Top" Margin="10">
-                        <Label Content="{DynamicResource LOCStatisticsGraphicsTitleGenre}" FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Center" FontWeight="Bold"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="110" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="110" />
+                            </Grid.ColumnDefinitions>
+
+                            <ToggleButton Grid.Column="0" Name="SwitchDataGenresTime" Content="{DynamicResource LOCStatisticsSwitchDataGenresTime}" IsChecked="True" Click="SwitchDataGenres_Click" />
+                            <Label  Grid.Column="1" Content="{DynamicResource LOCStatisticsGraphicsTitleGenre}" FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Center" FontWeight="Bold"/>
+                            <ToggleButton Grid.Column="2" Name="SwitchDataGenresCount" Content="{DynamicResource LOCStatisticsSwitchDataGenresCount}" IsChecked="False" Click="SwitchDataGenres_Click" />
+                        </Grid>
                     </StackPanel>
 
                     <StackPanel DockPanel.Dock="Bottom" Margin="10,0,10,10">
-                        <lvc:PieChart x:Name="StatsGraphicGenres" LegendLocation="none" Height="500" DataHover="StatsGraphicGenres_DataHover">
+                        <lvc:PieChart x:Name="StatsGraphicGenres" LegendLocation="none" Height="500" DataHover="StatsGraphicGenres_DataHover"
+                                      Visibility="{Binding ElementName=SwitchDataGenresCount, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <lvc:PieChart.DataTooltip>
                                 <localLVC:CustomerToolTipForMultipleSingle Loaded="CustomerToolTipForMultipleSingle_Loaded" />
                             </lvc:PieChart.DataTooltip>
@@ -203,6 +218,25 @@
                                 <lvc:PieSeries Title="Frederic" Values="2" DataLabels="True"/>
                             </lvc:PieChart.Series>
                         </lvc:PieChart>
+
+                        <lvc:CartesianChart x:Name="StatsGraphicGenresPlaytime" LegendLocation="None" Height="500"
+                                      Visibility="{Binding ElementName=SwitchDataGenresTime, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <lvc:CartesianChart.DataTooltip>
+                                <localLVC:CustomerToolTipForTime/>
+                            </lvc:CartesianChart.DataTooltip>
+
+                            <lvc:CartesianChart.AxisX>
+                                <lvc:Axis x:Name="StatsGraphicGenresPlaytimeX" ShowLabels="False"></lvc:Axis>
+                            </lvc:CartesianChart.AxisX>
+
+                            <lvc:CartesianChart.AxisY>
+                                <lvc:Axis x:Name="StatsGraphicGenresPlaytimeY">
+                                    <lvc:Axis.Separator>
+                                        <lvc:Separator Step="1" />
+                                    </lvc:Axis.Separator>
+                                </lvc:Axis>
+                            </lvc:CartesianChart.AxisY>
+                        </lvc:CartesianChart>
                     </StackPanel>
                 </DockPanel>
             </DockPanel>

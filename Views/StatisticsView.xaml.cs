@@ -58,6 +58,12 @@ namespace Statistics.Views
                 SwitchDataSources.IsChecked = true;
             }
 
+            if (settings.PreferGenresCount)
+            {
+                SwitchDataGenresTime.IsChecked = false;
+                SwitchDataGenresCount.IsChecked = true;
+            }
+
             SetListSource(PlayniteApiDatabase);
             _lastToggleButton = s0;
             s0.IsChecked = true;
@@ -336,6 +342,10 @@ namespace Statistics.Views
             string[] StatsGraphicsPlaytimeLabels = new string[0];
             ChartValues<CustomerForTime> SourcePlaytimeSeries = new ChartValues<CustomerForTime>();
 
+            SeriesCollection StatsGraphicsGenrePlaytimeSeries = new SeriesCollection();
+            string[] StatsGraphicsGenrePlaytimeLabels = new string[0];
+            ChartValues<CustomerForTime> SourceGenrePlaytimeSeries = new ChartValues<CustomerForTime>();
+
             SeriesCollection SourceGraphicsGenresSeries = new SeriesCollection();
 
             if (stats != null)
@@ -385,6 +395,8 @@ namespace Statistics.Views
                 if (SourceID == "null")
                 {
                     ConcurrentDictionary<Guid, StatisticsClass> StatisticsSourceDatabase = StatisticsDatabase.StatisticsSourceDatabase;
+
+                    // Playtime
                     StatsGraphicsPlaytimeLabels = new string[StatisticsSourceDatabase.Count];
                     temp = new List<dataTemp>();
 
@@ -440,6 +452,9 @@ namespace Statistics.Views
                             }
                         }
                     }
+
+                    // Genre Playtime
+                    
                 }
                 else
                 {
@@ -481,7 +496,36 @@ namespace Statistics.Views
                     Values = SourcePlaytimeSeries
                 });
 
-                //Graphics genres
+                // Genre Playtime
+                temp = new List<dataTemp>();
+                foreach (var item in stats.GameGenresTime)
+                {
+                    temp.Add(new dataTemp { Name = item.Name, Count = item.Playtime });
+                }
+                temp.Sort((a, b) => b.Count.CompareTo(a.Count));
+                temp.Reverse();
+
+                counter = 0;
+                StatsGraphicsGenrePlaytimeLabels = new string[temp.Count];
+                foreach (var item in temp)
+                {
+                    SourceGenrePlaytimeSeries.Add(new CustomerForTime
+                    {
+                        Name = item.Name,
+                        Values = item.Count
+                    });
+                    StatsGraphicsGenrePlaytimeLabels[counter] = item.Name;
+                    counter += 1;
+                }
+
+                StatsGraphicsGenrePlaytimeSeries.Add(new RowSeries
+                {
+                    Title = "Playtime",
+                    Values = SourceGenrePlaytimeSeries
+                });
+
+
+                // Graphics genres
                 temp = new List<dataTemp>();
                 foreach (var item in stats.GameGenres)
                 {
@@ -554,9 +598,11 @@ namespace Statistics.Views
             StatsGraphicPlaytime.Series = StatsGraphicsPlaytimeSeries;
             StatsGraphicPlaytimeY.Labels = StatsGraphicsPlaytimeLabels;
 
+            StatsGraphicGenresPlaytime.Series = StatsGraphicsGenrePlaytimeSeries;
+            StatsGraphicGenresPlaytimeY.Labels = StatsGraphicsGenrePlaytimeLabels;
+
             StatsGraphicGenres.Series = SourceGraphicsGenresSeries;
         }
-
 
         private void S0_Loaded(object sender, RoutedEventArgs e)
         {
@@ -572,6 +618,21 @@ namespace Statistics.Views
             else
             {
                 SwitchDataGames.IsChecked = !((ToggleButton)sender).IsChecked;
+            }
+
+
+            SetData("null");
+        }
+
+        private void SwitchDataGenres_Click(object sender, RoutedEventArgs e)
+        {
+            if (((ToggleButton)sender).Name == "SwitchDataGenresTime")
+            {
+                SwitchDataGenresCount.IsChecked = !((ToggleButton)sender).IsChecked;
+            }
+            else
+            {
+                SwitchDataGenresTime.IsChecked = !((ToggleButton)sender).IsChecked;
             }
 
 

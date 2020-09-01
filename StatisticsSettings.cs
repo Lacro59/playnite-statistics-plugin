@@ -13,6 +13,7 @@ namespace Statistics
 
         public bool IncludeHiddenGames { get; set; } = false;
         public bool PreferTopGames { get; set; } = true;
+        public bool PreferGenresCount { get; set; } = true;
 
         public int MaxGenres { get; set; } = 100;
         public int MinGenreCount { get; set; } = 2;
@@ -44,6 +45,7 @@ namespace Statistics
 
                 IncludeHiddenGames = savedSettings.IncludeHiddenGames;
                 PreferTopGames = savedSettings.PreferTopGames;
+                PreferGenresCount = savedSettings.PreferGenresCount;
 
                 MaxGenres = savedSettings.MaxGenres;
                 MinGenreCount = savedSettings.MinGenreCount;

@@ -19,6 +19,7 @@ namespace Statistics.Database
 
         private List<Guid> ListEmulators = new List<Guid>();
 
+
         public void Initialize(IGameDatabaseAPI PlayniteApiDatabase, StatisticsSettings settings)
         {
             this.PlayniteApiDatabase = PlayniteApiDatabase;
@@ -33,6 +34,7 @@ namespace Statistics.Database
             {
                 Name = "All",
                 GameGenres = new List<Counter>(),
+                GameGenresTime = new List<CounterTime>(),
                 GameSource = new List<Counter>(),
                 GameFavorite = new List<Counter>(),
                 GameIsInstalled = new List<Counter>(),
@@ -77,7 +79,6 @@ namespace Statistics.Database
             }
         }
 
-
         public StatisticsClass Get(Guid id)
         {
             if (StatisticsSourceDatabase.TryGetValue(id, out var item))
@@ -90,10 +91,10 @@ namespace Statistics.Database
             }
         }
 
-
         private void Add(Game Game, Guid? SourceId = null)
         {
             List<Counter> GameGenres = new List<Counter>();
+            List<CounterTime> GameGenresTime = new List<CounterTime>();
             List<Counter> GameSource = new List<Counter>();
             List<Counter> GameFavorite = new List<Counter>();
             List<Counter> GameIsInstalled = new List<Counter>();
@@ -108,6 +109,7 @@ namespace Statistics.Database
             if (SourceId == null)
             {
                 GameGenres = Statistics.GameGenres;
+                GameGenresTime = Statistics.GameGenresTime;
                 GameSource = Statistics.GameSource;
                 GameFavorite = Statistics.GameFavorite;
                 GameIsInstalled = Statistics.GameIsInstalled;
@@ -122,6 +124,7 @@ namespace Statistics.Database
                 if (StatisticsSourceDatabase.TryGetValue((Guid)SourceId, out var item))
                 {
                     GameGenres = item.GameGenres;
+                    GameGenresTime = item.GameGenresTime;
                     GameSource = item.GameSource;
                     GameFavorite = item.GameFavorite;
                     GameIsInstalled = item.GameIsInstalled;
@@ -179,10 +182,14 @@ namespace Statistics.Database
             }
 
             if (Game.IsInstalled)
+            {
                 GameIsInstalled.Add(new Counter { Id = Game.Id, Name = Game.Name });
+            }
 
-            if (Game.LastActivity == null)
+            if (Game.LastActivity == null && Game.Playtime == 0)
+            {
                 GameIsNotLaunching.Add(new Counter { Id = Game.Id, Name = Game.Name });
+            }
 
             if (Game.Genres != null)
             {
@@ -198,7 +205,26 @@ namespace Statistics.Database
                         }
                     }
                     if (IsFind == false)
+                    {
                         GameGenres.Add(new Counter { Id = item.Id, Name = item.Name, Count = 1 });
+                    }
+                }
+
+                foreach (var item in Game.Genres)
+                {
+                    IsFind = false;
+                    for (int i = 0; i < GameGenresTime.Count; i++)
+                    {
+                        if (item.Name == GameGenresTime[i].Name)
+                        {
+                            GameGenresTime[i].Playtime += Game.Playtime;
+                            IsFind = true;
+                        }
+                    }
+                    if (IsFind == false)
+                    {
+                        GameGenresTime.Add(new CounterTime { Id = item.Id, Name = item.Name, Playtime = Game.Playtime });
+                    }
                 }
             }
 
@@ -271,6 +297,7 @@ namespace Statistics.Database
             else
             {
                 StatisticsSourceDatabase[(Guid)SourceId].GameGenres = GameGenres;
+                StatisticsSourceDatabase[(Guid)SourceId].GameGenresTime = GameGenresTime;
                 StatisticsSourceDatabase[(Guid)SourceId].GameSource = GameSource;
                 StatisticsSourceDatabase[(Guid)SourceId].GameFavorite = GameFavorite;
                 StatisticsSourceDatabase[(Guid)SourceId].GameIsInstalled = GameIsInstalled;
@@ -281,7 +308,6 @@ namespace Statistics.Database
                 StatisticsSourceDatabase[(Guid)SourceId].Total += 1;
             }
         }
-
 
         public bool HaveGame(Guid SourceId)
         {

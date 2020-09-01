@@ -8,6 +8,7 @@ namespace Statistics.Models
         public string Name { get; set; }
 
         public List<Counter> GameGenres { get; set;  }
+        public List<CounterTime> GameGenresTime { get; set;  }
         public List<Counter> GameSource { get; set;  }
         public List<Counter> GameFavorite { get; set;  }
         public List<Counter> GameIsInstalled { get; set;  }
@@ -24,5 +25,12 @@ namespace Statistics.Models
         public Guid Id { get; set; }
         public string Name { get; set; }
         public long Count { get; set; }
+    }
+
+    class CounterTime
+    {
+        public Guid Id { get; set; }
+        public string Name { get; set; }
+        public long Playtime { get; set; }
     }
 }

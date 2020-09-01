@@ -14,7 +14,9 @@
 
     <sys:String x:Key="LOCStatisticsSwitchDataGames">按游戏</sys:String>
     <sys:String x:Key="LOCStatisticsSwitchDataSources">按来源</sys:String>
-    
+    <sys:String x:Key="LOCStatisticsSwitchDataGenresTime">Time</sys:String>
+    <sys:String x:Key="LOCStatisticsSwitchDataGenresCount">Total</sys:String>
+
     <sys:String x:Key="LOCStatisticsDataChoice">选择数据</sys:String>
     <sys:String x:Key="LOCStatisticsDataChoiceAll">所有来源</sys:String>
 
@@ -44,6 +46,7 @@
 
     <sys:String x:Key="LOCStatisticsEnableIncludeHiddenGames">包含隐藏游戏</sys:String>
     <sys:String x:Key="LOCStatisticsPreferTopGames">选择“所有来源”时默认按游戏时长排序</sys:String>
+    <sys:String x:Key="LOCStatisticsPreferTopCount">Prefer the genres graphics with total</sys:String>
     <sys:String x:Key="LOCStatisticsMaxGenres">圆饼图中最多显示多少个类型</sys:String>
     <sys:String x:Key="LOCStatisticsMinGenreCount">一个类型最少要有多少个游戏才在圆饼图中显示</sys:String>
 
