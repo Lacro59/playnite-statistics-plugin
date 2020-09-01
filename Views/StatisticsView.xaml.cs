@@ -634,9 +634,6 @@ namespace Statistics.Views
             {
                 SwitchDataGenresTime.IsChecked = !((ToggleButton)sender).IsChecked;
             }
-
-
-            SetData("null");
         }
 
         #region Tooltip selection
