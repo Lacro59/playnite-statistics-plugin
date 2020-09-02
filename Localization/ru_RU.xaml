@@ -14,8 +14,8 @@
 
     <sys:String x:Key="LOCStatisticsSwitchDataGames">Игры</sys:String>
     <sys:String x:Key="LOCStatisticsSwitchDataSources">Источники</sys:String>
-    <sys:String x:Key="LOCStatisticsSwitchDataGenresTime">Time</sys:String>
-    <sys:String x:Key="LOCStatisticsSwitchDataGenresCount">Total</sys:String>
+    <sys:String x:Key="LOCStatisticsSwitchDataGenresTime">Времени</sys:String>
+    <sys:String x:Key="LOCStatisticsSwitchDataGenresCount">в общем</sys:String>
 
     <sys:String x:Key="LOCStatisticsDataChoice">Выбор источника</sys:String>
     <sys:String x:Key="LOCStatisticsDataChoiceAll">Все источники</sys:String>
@@ -46,7 +46,7 @@
 
     <sys:String x:Key="LOCStatisticsEnableIncludeHiddenGames">Включая скрытые игры</sys:String>
     <sys:String x:Key="LOCStatisticsPreferTopGames">Предпочитать "Игры" когда "Источники"</sys:String>
-    <sys:String x:Key="LOCStatisticsPreferTopCount">Prefer the genres graphics with total</sys:String>
+    <sys:String x:Key="LOCStatisticsPreferTopCount">Предпочитать общий график жанров</sys:String>
     <sys:String x:Key="LOCStatisticsMaxGenres">Максимальное количество Жанров для отображения на круглом графике.</sys:String>
     <sys:String x:Key="LOCStatisticsMinGenreCount">Мин Количество игр, которые должен иметь жанр, чтобы он появлялся на круглом графике.</sys:String>
 
