@@ -17,6 +17,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace Statistics.Views
@@ -49,6 +50,8 @@ namespace Statistics.Views
             StatisticsDatabase.Initialize(PlayniteApiDatabase, settings);
 
             InitializeComponent();
+
+            this.PreviewKeyDown += new KeyEventHandler(HandleEsc);
 
             _settings = settings;
 
@@ -705,6 +708,14 @@ namespace Statistics.Views
             catch
             {
 
+            }
+        }
+
+        private void HandleEsc(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                Close();
             }
         }
     }
