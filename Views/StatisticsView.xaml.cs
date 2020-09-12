@@ -508,6 +508,9 @@ namespace Statistics.Views
                 temp.Sort((a, b) => b.Count.CompareTo(a.Count));
                 temp.Reverse();
 
+                // Limit with playtime > 0
+                temp = temp.FindAll(x => x.Count > 0);
+
                 counter = 0;
                 StatsGraphicsGenrePlaytimeLabels = new string[temp.Count];
                 foreach (var item in temp)
